@@ -1,0 +1,47 @@
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.md-h-600px {
+  height: 95vh;
+}
+
+.sm-h-500px {
+  height: 95vh;
+}
+
+.cover-background {
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-pagination-progress {
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0;
+}
+
+.swiper-pagination-progress .swiper-progress {
+  height: 100%;
+  background-color: #000;
+}
+
+.swiper-pagination-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.text-dark-gray {
+  color: #333;
+}
+
+.carousel { 
+  max-width: 100vw;
+  overflow-x: hidden;
+}

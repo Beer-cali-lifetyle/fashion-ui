@@ -1,0 +1,37 @@
+/* Base grid for desktop */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for large screens */
+    gap: 20px; /* Adjust the space between grid items */
+  }
+  
+  /* For large screens */
+  .lg-grid-4col {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for large screens */
+  }
+  
+  /* For medium screens */
+  .md-grid-3col {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+  }
+  
+  /* For small screens */
+  .sm-grid-2col {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+  }
+  
+  /* For extra small screens */
+  .xs-grid-1col {
+    grid-template-columns: 1fr; /* 1 column for extra small screens */
+  }
+  
+  /* Ensures the grid spans across the container */
+  .shop-wrapper {
+    width: 100%;
+  }
+  
+  .grid-sizer {
+    visibility: hidden; /* If you don't want it visible */
+    grid-column: 1 / -1; /* Optional: Ensure it takes up space across the grid */
+  }
+  
