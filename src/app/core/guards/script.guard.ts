@@ -7,7 +7,7 @@ import { CanActivate } from '@angular/router';
 export class ScriptLoaderGuard implements CanActivate {
 
   async canActivate(): Promise<boolean> {
-    await this.loadScripts(); 
+    // await this.loadScripts(); 
     return true;  
   }
 
