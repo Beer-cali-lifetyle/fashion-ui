@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,12 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+
+  constructor() {
+  }
   title = 'my-angular-pwa';
 
-ngOnInit(): void {
-}
+  ngOnInit(): void {
+  }
 
 }

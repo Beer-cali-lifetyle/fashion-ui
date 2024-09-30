@@ -1,32 +1,27 @@
 import { Route, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layout/base-layout/base-layout.component';
+import { ScriptLoaderGuard } from './core/guards/script.guard';
 
 export const appRoutes: Routes = [
     {
         path: 'auth',
-        loadChildren: () => import('./auth/auth.routes')
+        loadChildren: () => import('./auth/auth.routes'),
+        canActivate: [ScriptLoaderGuard]
     },
     {
         path: '',
         component: BaseLayoutComponent,
+        canActivate: [ScriptLoaderGuard],
         children: [
             {
                 path: '',
                 loadChildren: () => import('./modules/app.routes')
             },
-            //   {
-            //     path: 'bd',
-            //     loadChildren: () => import('./modules/business-development/bd.routes')
-            //   },
-            //   {
-            //     path: 'operations',
-            //     loadChildren: () => import('./modules/operations/operations.routes')
-            //   },
         ]
     },
     {
         path: '**',
-        redirectTo: 'sign-in',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
     {
