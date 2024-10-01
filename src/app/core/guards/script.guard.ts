@@ -8,19 +8,17 @@ export class ScriptLoaderGuard implements CanActivate {
 
   async canActivate(): Promise<boolean> {
     // await this.loadScripts(); 
-    return true;  
+    return true;
   }
 
   private loadScripts(): Promise<void[]> {
     const scripts = [
-      { src: 'https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js', id: 'swiper-script' },
-      { src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', id: 'jquery-script' },
       { src: '/assets/js/vendors.js', id: 'vendors-script' },
       { src: '/assets/js/main.js', id: 'main-script' }
     ];
 
     const scriptPromises = scripts.map(script => this.loadScript(script));
-    return Promise.all(scriptPromises); 
+    return Promise.all(scriptPromises);
   }
 
   private loadScript(script: { src: string, id: string }): Promise<void> {

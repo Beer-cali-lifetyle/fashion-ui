@@ -32,24 +32,23 @@
               }
             ],
             "styles": [
-              "node_modules/swiper/swiper-bundle.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/vendors/vendors.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/swiper/swiper-bundle.min.css",
               "src/assets/sass/style.scss",
               "src/styles.scss",
               "src/assets/sass/fashion-store.css"
             ],
             "scripts": [
-              "src/assets/js/vendors.js",
+              "src/assets/js/jquery.js",
+              "src/assets/js/vendors.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/swiper/swiper-bundle.min.js",
               "src/assets/js/main.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -75,6 +74,14 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/my-angular-pwa/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

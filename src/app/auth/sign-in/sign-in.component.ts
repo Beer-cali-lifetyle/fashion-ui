@@ -1,16 +1,18 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component
+  Component,
+  PLATFORM_ID,
+  Inject
 } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { CommonModule, NgIf, isPlatformBrowser } from '@angular/common';
 import { ApiService } from '../../shared/services/api.service';
 import { AppBase } from '../../../app-base.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { ContextService } from '../../core/services/context.service';
-import { CookieService } from 'ngx-cookie-service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,7 +25,8 @@ import { CookieService } from 'ngx-cookie-service';
     NgIf,
     RouterLink,
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class SignInComponent extends AppBase {
@@ -31,12 +34,13 @@ export class SignInComponent extends AppBase {
   visible = false;
 
   constructor(
-    private cookieService: CookieService,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private ApiService: ApiService,
-    private context: ContextService
+    private apiService: ApiService,
+    private context: ContextService,
+    private commonService: CommonService
   ) {
     super();
     this.form = this.fb.group({
@@ -53,14 +57,22 @@ export class SignInComponent extends AppBase {
 
   async onSubmit() {
     if (this.form.valid) {
-      await this.ApiService.SignIn(this.form.value).then((res) => {
-        this.context.Profile.set(res?.user)
-        console.log(res)
-        this.cookieService.set('access_token', res?.access_token)
-        this.cookieService.set('user_id', res?.user?.id)
-        // window.location.href = '/home';
-        this.router.navigate(['/home']);
-      })
+      try {
+        const res = await this.apiService.SignIn(this.form.value);
+        this.context.user.set(res?.user);
+
+        // Use localStorage to store values only in the browser
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('access_token', res?.access_token);
+          localStorage.setItem('user_id', res?.user?.id);
+          localStorage.setItem('user', JSON.stringify(res?.user)); // Store as string
+        }
+
+        this.commonService.goToPage('/home');
+      } catch (error) {
+        console.error('Sign-in error:', error);
+        // Handle error appropriately (e.g., show a notification or message to the user)
+      }
     } else {
       this.validateForm();
     }

@@ -1,5 +1,6 @@
 
 import { Routes } from '@angular/router';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 
 const ModuleRoutes: Routes = [
@@ -10,7 +11,7 @@ const ModuleRoutes: Routes = [
         path: 'home', loadComponent: () => import('./index').then(c => c.HomeComponent)
     },
     {
-        path: 'shop', loadComponent: () => import('./index').then(c => c.ShopListComponent)
+        path: 'shop', loadComponent: () => import('./index').then(c => c.ShopListComponent), canActivate: [AuthGuard]
     },
     {
         path: 'collection', loadComponent: () => import('./index').then(c => c.CollectionComponent)

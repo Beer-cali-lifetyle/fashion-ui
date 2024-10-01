@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { SharedModule } from '../../../shared/shared/shared.module';
 import { ApiService } from '../../../shared/services/api.service';
+import { CommonService } from '../../../shared/services/common.service';
 
 @Component({
   imports: [
@@ -14,18 +15,16 @@ import { ApiService } from '../../../shared/services/api.service';
 export class HeaderComponent implements OnInit {
   categories: any = [];
   constructor(
-    private ApiService: ApiService
+    private ApiService: ApiService,
   ) { }
 
   async ngOnInit() {
-      await this.fetchCategories()
+    await this.fetchCategories()
   }
 
   async fetchCategories() {
-    debugger;
     await this.ApiService.getCategories().then((res) => {
       this.categories = res;
-      console.log(this.categories)
     })
   }
 

@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   async getCategories() {
-    return await this.httpRequest.POST(`/categories`);
+    return await this.httpRequest.GET(`/categories`);
   }
 
   async getById(code: string) {

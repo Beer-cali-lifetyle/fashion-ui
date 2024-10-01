@@ -6,12 +6,10 @@ export const appRoutes: Routes = [
     {
         path: 'auth',
         loadChildren: () => import('./auth/auth.routes'),
-        canActivate: [ScriptLoaderGuard]
     },
     {
         path: '',
         component: BaseLayoutComponent,
-        canActivate: [ScriptLoaderGuard],
         children: [
             {
                 path: '',
