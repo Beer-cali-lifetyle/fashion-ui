@@ -1,20 +1,37 @@
-import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  imports: [RouterOutlet],
+  standalone: true
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private renderer: Renderer2
+  ) { }
 
-  constructor() {
+  ngAfterViewInit(): void {
+    // if (isPlatformBrowser(this.platformId)) {
+      this.loadScript('assets/js/jquery.js').then(() => {
+        this.loadScript('assets/js/vendors.js').then(() => {
+          this.loadScript('assets/js/main.js');
+        });
+      });
+    // }
   }
-  title = 'my-angular-pwa';
 
-  ngOnInit(): void {
+  private loadScript(src: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const script = this.renderer.createElement('script');
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      this.renderer.appendChild(document.body, script);
+    });
   }
-
 }

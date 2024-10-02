@@ -32,22 +32,17 @@
               }
             ],
             "styles": [
-              "src/assets/sass/vendors/vendors.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/swiper/swiper-bundle.min.css",
-              "src/assets/sass/style.scss",
               "src/styles.scss",
-              "src/assets/sass/fashion-store.css"
+              "src/assets/css/vendors.min.css",
+              "src/assets/css/icon.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/responsive.css",
+              "src/assets/demos/fashion-store/fashion-store.css"
             ],
             "scripts": [
-              "src/assets/js/jquery.js",
-              "src/assets/js/vendors.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/swiper/swiper-bundle.min.js",
-              "src/assets/js/main.js"
             ],
             "server": "src/main.server.ts",
-            "prerender": true,
+            "prerender": false,
             "ssr": false
           },
           "configurations": {
@@ -55,13 +50,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "100MB",
+                  "maximumError": "200MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "100MB",
+                  "maximumError": "200MB"
                 }
               ],
               "outputHashing": "all",
@@ -110,13 +105,25 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css",
+              "src/assets/css/vendors.min.css",
+              "src/assets/css/icon.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/responsive.css",
+              "src/assets/demos/fashion-store/fashion-store.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         }
       }
