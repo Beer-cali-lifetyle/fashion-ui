@@ -10,6 +10,7 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: BaseLayoutComponent,
+        // canActivateChild: [ScriptLoaderGuard],
         children: [
             {
                 path: '',

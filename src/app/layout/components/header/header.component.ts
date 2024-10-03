@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { SharedModule } from '../../../shared/shared/shared.module';
 import { ApiService } from '../../../shared/services/api.service';
 import { CommonService } from '../../../shared/services/common.service';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   categories: any = [];
   constructor(
     private ApiService: ApiService,
+    public router: Router
   ) { }
 
   async ngOnInit() {
@@ -26,6 +28,11 @@ export class HeaderComponent implements OnInit {
     await this.ApiService.getCategories().then((res) => {
       this.categories = res;
     })
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/auth/sign-in']);
   }
 
 }

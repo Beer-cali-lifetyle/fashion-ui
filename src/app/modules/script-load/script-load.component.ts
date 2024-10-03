@@ -1,22 +1,19 @@
-import { Component, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { ScriptLoaderService } from './core/services/script-loader.service';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ScriptLoaderService } from '../../core/services/script-loader.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [RouterOutlet],
+  selector: 'app-script-load',
+  templateUrl: './script-load.component.html',
+  styleUrls: ['./script-load.component.css'],
   standalone: true
 })
-export class AppComponent {
+export class ScriptLoadComponent implements AfterViewInit  {
   constructor(
     private scriptService: ScriptLoaderService
   ) { }
 
   async ngAfterViewInit() {
-    // await this.scriptService.loadScripts()
+    await this.scriptService.loadScripts()
   }
 
   // private loadScript(src: string): Promise<any> {

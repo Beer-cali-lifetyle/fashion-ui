@@ -2,7 +2,7 @@
     "use strict";
     var menuBreakPoint = 991;
     var sliderBreakPoint = 991;
-    var animeBreakPoint = 1199;
+    var animeBreakPoint = 1448;
     var headerTransition = 300;
     var isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     if (isTouchDevice) {

@@ -4,11 +4,13 @@ import Swiper from 'swiper';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import anime from 'animejs/lib/anime.es.js';
 import { SharedModule } from '../../shared/shared/shared.module';
+import { ScriptLoadComponent } from '../script-load/script-load.component';
 
 @Component({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ScriptLoadComponent
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -155,11 +157,6 @@ export class HomeComponent implements AfterViewInit {
           keyboard: {
             enabled: true,
             onlyInViewport: true
-          },
-          breakpoints: {
-            1199: {
-              direction: 'vertical'
-            }
           },
           effect: 'slide'
         });

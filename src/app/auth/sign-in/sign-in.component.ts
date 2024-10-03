@@ -13,6 +13,7 @@ import { AppBase } from '../../../app-base.component';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { ContextService } from '../../core/services/context.service';
 import { CommonService } from '../../shared/services/common.service';
+import { ScriptLoadComponent } from '../../modules/script-load/script-load.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,8 +27,9 @@ import { CommonService } from '../../shared/services/common.service';
     RouterLink,
     CommonModule,
     SharedModule,
-    RouterModule
-  ]
+    RouterModule,
+    ScriptLoadComponent
+]
 })
 export class SignInComponent extends AppBase {
   inputType = 'password';
@@ -67,8 +69,7 @@ export class SignInComponent extends AppBase {
           localStorage.setItem('user_id', res?.user?.id);
           localStorage.setItem('user', JSON.stringify(res?.user)); // Store as string
         }
-
-        this.commonService.goToPage('/home');
+        this.router.navigate(['/home'])
       } catch (error) {
         console.error('Sign-in error:', error);
         // Handle error appropriately (e.g., show a notification or message to the user)
