@@ -5,6 +5,10 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import anime from 'animejs/lib/anime.es.js';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { ScriptLoadComponent } from '../script-load/script-load.component';
+import { ApiService } from '../../shared/services/api.service';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { ContextService } from '../../core/services/context.service';
 
 @Component({
   imports: [
@@ -26,6 +30,9 @@ import { ScriptLoadComponent } from '../script-load/script-load.component';
   ]
 })
 export class HomeComponent implements AfterViewInit {
+  categories: any = [];
+  products: any = [];
+  imgBaseUrl: string = environment.api.base_url;
   lookbookData = {
     year: 'Lookbook 2023',
     heading: 'New arrival',
@@ -133,8 +140,16 @@ export class HomeComponent implements AfterViewInit {
       description: '24/7 days a week support'
     }
   ];
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+    private ApiService: ApiService,
+    private router: Router,
+    private contextService: ContextService) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  async ngOnInit() {
+    await this.fetchCategories();
+    await this.fetchProducts();
   }
 
   ngAfterViewInit() {
@@ -190,4 +205,46 @@ export class HomeComponent implements AfterViewInit {
       // });
     }
   }
+
+  async fetchCategories() {
+    await this.ApiService.getCategories().then((res) => {
+      this.categories = res;
+    })
+  }
+
+  async fetchProducts() {
+    await this.ApiService.fetcHlatestProducts().then(res => {
+      this.products = res?.data;
+    })
+  }
+
+  async addToCart(id: any) {
+    if (this.contextService.user()) {
+      const payload = {
+        productId: id,
+        quantity: 1
+      }
+      await this.ApiService.addToCart(payload).then(async res => {
+        // await this.getCart();
+        // await this.toaster.Success('Added to cart successfully')
+      })
+    }
+    else {
+      this.router.navigate(['/auth/sign-in'])
+    }
+  }
+
+  async addToWishlist(id: any) {
+    if (this.contextService.user()) {
+      const payload = {
+        productId: id
+      }
+      await this.ApiService.addToWishlist(payload).then(async (res) => {
+        // await this.fetchWishlist();
+      })
+    } else {
+      this.router.navigate(['/auth/sign-in'])
+    }
+  }
+
 }

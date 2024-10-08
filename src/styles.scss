@@ -35,3 +35,20 @@
     grid-column: 1 / -1; /* Optional: Ensure it takes up space across the grid */
   }
   
+
+  .shop-image img {
+    height: 300px; /* Set a uniform height */
+    width: 100%;   /* Ensure full width */
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+
+@media (max-width: 768px) {
+  .shop-image img {
+      height: 200px; /* Adjust for smaller screens */
+  }
+}
+@media (max-width: 576px) {
+  .shop-image img {
+      height: 150px; /* Further adjust for mobile devices */
+  }
+}

@@ -1,0 +1,201 @@
+.reg_head h4 {
+    color: #000;
+    font-size: 20px;
+}
+
+.reg_head {
+    margin-bottom: 20px !important;
+}
+
+.reg_head p {
+    font-size: 14px;
+}
+
+
+.white-logo img {
+    width: 300px;
+}
+
+
+/* .btn.btn-primary {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #0d997e;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px;
+} */
+
+/* .btn.btn-primary:hover {
+    background: #fff;
+    color: #0d997e;
+} */
+
+.center_content h2 {
+    color: white;
+    font-weight: 800;
+    font-size: 34px;
+}
+
+.Completed_form .thnaku_msg {
+    font-size: 14px;
+    text-align: justify;
+}
+
+.clover {
+    max-height: 25px;
+}
+
+.summary {
+    background-color: #0d997e14;
+    padding: 5px;
+}
+
+h6 {
+    margin: 0;
+    padding: 5px 5px;
+}
+
+h5 {
+    margin: 0;
+    padding: 5px 5px;
+}
+
+label {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+input {
+    height: 35px;
+    font-size: 12px !important;
+}
+
+select {
+    height: 35px;
+    font-size: 12px !important;
+    padding: 7px 15px !important;
+}
+
+.card {
+    background-color: #bcbcbc3b;
+}
+
+.icon_box {
+    position: relative;
+}
+
+/* jh */
+.bxs-show {
+    position: absolute;
+    font-size: 20px;
+    top: 38px;
+    right: 25px;
+    color: #777;
+    z-index: 9;
+    height: 25px;
+    width: 40px;
+}
+
+.payment_outer {
+    padding: 40px;
+    text-align: center;
+}
+
+.pay_card img {
+    width: 35px;
+    padding-right: 5px;
+}
+
+.pay_card {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pay_card p {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.card_payment .card {
+    background-color: #ecf7f5;
+}
+
+.cont_text {
+    font-size: 14px;
+    margin: 10px 0 0;
+    text-align: center;
+    font-style: italic;
+}
+
+.register_account h2 {
+    font-size: 34px;
+}
+
+@media screen and (max-width: 1400px) {
+    .btn.btn-primary {
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding: 10px;
+    }
+
+    .reg_head h4 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1199px) {
+    .white-logo img {
+        width: 250px;
+        margin-bottom: 25px;
+    }
+
+    .center_content h2 {
+        font-size: 26px;
+        margin-bottom: 25px !important;
+    }
+
+    .services_list {
+        margin: 0 0 20px !important;
+    }
+
+    .services_list .col-12:last-child {
+        padding-left: 0;
+    }
+}
+
+
+@media screen and (max-width: 991px) {
+    .legacy_logo {
+        margin-bottom: 30px;
+    }
+
+    .center_content h2 {
+        margin-bottom: 30px !important;
+    }
+
+    .sign_up li {
+        font-size: 15px;
+    }
+
+    .bg_brand {
+        height: auto;
+    }
+
+.reg_page h2{
+    font-size: 44px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #1a8269;
+  }
+
+
+    .logo_slider {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,186 @@
+<div class="mx-5">
+<div class="col-x12 col-lg-12 col-md-12 layout-spacing card mb-5">
+  <div class="section general-info payment-info card-body bg-light">
+    <div class="info">
+      <div class="d-flex justify-content-between">
+      <h6>Payment Method</h6>
+      <button class="btn btn-secondary add-payment" (click)="openModalToAdd()">Add Payment Method</button>
+    </div>
+      <div class="list-group mt-4">
+
+        <label class="list-group-item">
+          <div class="d-flex">
+            <div class="billing-radio me-2">
+            </div>
+            <div class="payment-card">
+              <img src="https://designreset.com/cork/html/src/assets/img/card-mastercard.svg"
+                class="align-self-center me-3" alt="americanexpress">
+            </div>
+            <div class="billing-content">
+              <div class="fw-bold">Mastercard</div>
+              <p class="mb-1">XXXX XXXX XXXX 9704</p>
+            </div>
+            <div class=" me-2billing-edit align-self-center ms-auto">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+              </svg>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+              </svg>           
+            </div>
+          </div>
+        </label>
+        <label class="list-group-item">
+          <div class="d-flex w-100">
+            <div class="billing-radio me-2">
+            </div>
+            <div class="payment-card">
+              <img src="https://designreset.com/cork/html/src/assets/img/card-americanexpress.svg"
+                class="align-self-center me-3" alt="americanexpress">
+            </div>
+            <div class="billing-content">
+              <div class="fw-bold">American Express</div>
+              <p class="mb-1">XXXX XXXX XXXX 310</p>
+            </div>
+            <div class=" me-2billing-edit align-self-center ms-auto">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+              </svg>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+              </svg>    
+            </div>
+          </div>
+        </label>
+        <label class="list-group-item">
+          <div class="d-flex w-100">
+            <div class="billing-radio me-2">
+            </div>
+            <div class="payment-card">
+              <img src="https://designreset.com/cork/html/src/assets/img/card-visa.svg"
+                class="align-self-center me-3" alt="americanexpress">
+            </div>
+            <div class="billing-content">
+              <div class="fw-bold">Visa</div>
+              <p class="mb-1">XXXX XXXX XXXX 5264</p>
+            </div>
+            <div class=" me-2billing-edit align-self-center ms-auto">
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+              </svg>
+              <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+              </svg>    
+            </div>
+          </div>
+        </label>
+      </div>
+
+
+    </div>
+  </div>
+</div></div>
+
+
+
+
+
+
+<!-- Modal -->
+<ng-template #modalContentPayment let-modal>
+  <div class="modal-dialog modal-dialog-centered" style="margin: 0; padding:0;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Payment Details</h5>
+        <button type="button" class="close btn-close" (click)="closeModal()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="section general-info payment-info">
+          <div class="info">
+      
+            <form [formGroup]="form" class="card" (ngSubmit)="onSubmit()">
+              <div class="row card-body">
+                <div class="col-md-12 mb-3">
+    
+                  <label for="firstName">Card Holder Name <span>*</span></label>
+                  <input type="text" (keypress)="handleKeyPressName($event)" (paste)="disablePaste($event)"
+                    formControlName="holder_name" class="form-control" id="holder_name"
+                    placeholder="Enter Card Holder Name">
+                  <div class="me-1 ms-2 mt-1"
+                    *ngIf="(form.get('holder_name')?.touched && !form.get('holder_name')?.valid) ">
+                    <div class="text-danger p-small" *ngIf="form.get('holder_name')?.errors?.['required']">Card
+                      holder name is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 mb-3 icon_box">
+                  <label for="username">Card Number <span>*</span></label>
+                  <input type="text" (paste)="disablePaste($event)" type="text"
+                    (keypress)="handleKeyPress($event)" (input)="cardLogo($event)" formControlName="card_number"
+                    [value]="form.value.card_number | cardNumber" class="form-control" id="card_number"
+                    placeholder="0000 0000 0000 0000">
+                  <img *ngIf="cardLogoImg" [src]="cardLogoImg" class="bxs-show">
+                  <div class="me-1 ms-2 mt-1"
+                    *ngIf="(form.get('card_number')?.touched && !form.get('card_number')?.valid)">
+                    <div class="text-danger p-small" *ngIf="form.get('card_number')?.errors?.['required']">Card
+                      number is required.</div>
+                    <div class="text-danger p-small" *ngIf="form.get('card_number')?.errors?.['pattern']">Only
+                      visa or mastercard are allowed.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="exp_month">Exp Month <span>*</span></label>
+                  <select class="form-control" formControlName="exp_month" id="exp_month">
+                    <option disabled value="">Select month</option>
+                    <option [value]="item?.key" *ngFor="let item of month">{{item?.value}}</option>
+                  </select>
+                  <div class="me-1 ms-2  mt-1"
+                    *ngIf="(form.get('exp_month')?.touched && !form.get('exp_month')?.valid) ">
+                    <div class="text-danger p-small" *ngIf="form.get('exp_month')?.errors?.['required']">Expiry month is
+                      required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="exp_year">Exp Year <span>*</span></label>
+                  <select class="form-control" formControlName="exp_year" id="exp_year" name="exp_year">
+                    <option disabled value="">Select Year</option>
+                    <option [value]="item" *ngFor="let item of years">{{item}}</option>
+                  </select>
+                  <div class="me-1 ms-2  mt-1"
+                    *ngIf="(form.get('exp_year')?.touched && !form.get('exp_year')?.valid) ">
+                    <div class="text-danger p-small" *ngIf="form.get('exp_year')?.errors?.['required']">Expiry year is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="useremail">CVV <span>*</span></label>
+                  <input type="text" (paste)="disablePaste($event)" formControlName="cvv" id="cvv"
+                    class="form-control" placeholder="Enter CVV" (keypress)="cvvInput($event)">
+                  <div class="me-1 ms-2  mt-1" *ngIf="(form.get('cvv')?.touched && !form.get('cvv')?.valid) ">
+                    <div class="text-danger p-small" *ngIf="form.get('cvv')?.errors?.['required']">CVV is required.</div>
+                    <div class="text-danger p-small" *ngIf="form.get('cvv')?.value && form.get('cvv')?.value.length !== 3">Enter valid
+                      CVV.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</ng-template>
+
+
+

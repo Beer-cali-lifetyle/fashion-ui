@@ -63,10 +63,16 @@
                                         class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-3 mb-50px md-mb-25px xs-mb-15px">
                                         <div class="col" *ngFor="let category of categories">
                                             <ul>
-                                                <li class="sub-title">{{ category.catname }}</li>
+                                                <li class="sub-title fw-bold">
+                                                    <a href="javascript:void(0);" class="fw-bold" (click)="redirectToShopList('category', category.id)">
+                                                        {{ category.catname }}
+                                                    </a>
+                                                </li>
                                                 <ul>
                                                     <li *ngFor="let item of category.subcategories">
-                                                        <a href="#">{{ item.subcategory_name }}</a>
+                                                        <a href="javascript:void(0);" (click)="redirectToShopList('subcategory', item.id)">
+                                                            {{ item.subcategory_name }}
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </ul>
@@ -85,7 +91,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item dropdown submenu">
+                        <!-- <li class="nav-item dropdown submenu">
                             <a class="nav-link" [routerLink]="'/collection'">Collection</a>
 
                             <i class="fa-solid fa-angle-down dropdown-toggle" id="navbarDropdownMenuLink2" role="button"
@@ -187,13 +193,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <ul class="navbar-nav alt-font navbar-right justify-content-start">
                         <li class="nav-item">
                             <a href="demo-fashion-store-magazine.html" class="nav-link">Magazine</a>
                         </li>
-                        <li class="nav-item dropdown simple-dropdown">
+                        <!-- <li class="nav-item dropdown simple-dropdown">
                             <a href="javascript:void(0);" class="nav-link">Pages</a>
                             <i class="fa-solid fa-angle-down dropdown-toggle" id="navbarDropdownMenuLink3" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"></i>
@@ -205,7 +211,7 @@
                                 <li><a href="demo-fashion-store-cart.html">Cart</a></li>
                                 <li><a href="demo-fashion-store-checkout.html">Checkout</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a routerLink="/contact" class="nav-link">Contact</a>
                         </li>
@@ -243,7 +249,8 @@
                         </a>
                         <!-- Dropdown content -->
                         <ul class="account-item-list">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a routerLink="/profile">Profile</a></li>
+                            <li><a routerLink="/wishlist">Wishlist</a></li>
                             <li><a (click)="logout()">Logout</a></li>
                         </ul>
                     </div>
@@ -251,38 +258,34 @@
                         <div class="header-cart dropdown">
                             <a href="javascript:void(0);"><i data-feather="shopping-bag"
                                     class="feather icon-feather-shopping-bag"></i><span
-                                    class="cart-count alt-font text-white bg-dark-gray">2</span></a>
+                                    class="cart-count alt-font text-white bg-dark-gray">{{contextService.cart()?.data?.length
+                                    || 0}}</span></a>
                             <ul class="cart-item-list">
-                                <li class="cart-item align-items-center">
-                                    <a href="javascript:void(0);" class="alt-font close">×</a>
+                                <li class="cart-item align-items-center"
+                                    *ngFor="let item of contextService.cart()?.data">
+                                    <a href="javascript:void(0);" class="alt-font close"
+                                        (click)="removeItemFromCart(item?.id)">×</a>
                                     <div class="product-image">
-                                        <a href="demo-fashion-store-single-product.html"><img
-                                                src="https://via.placeholder.com/600x765" class="cart-thumb" alt=""></a>
+                                        <a [routerLink]="['/shop/product', item?.product?.id]"><img
+                                                [src]="imgBaseUrl + item?.product?.image_file" class="cart-thumb"
+                                                alt=""></a>
                                     </div>
                                     <div class="product-detail fw-600">
-                                        <a href="demo-fashion-store-single-product.html">Ribbed tank</a>
-                                        <span class="item-ammount fw-400">1 x $23.00</span>
-                                    </div>
-                                </li>
-                                <li class="cart-item align-items-center">
-                                    <a href="javascript:void(0);" class="alt-font close">×</a>
-                                    <div class="product-image">
-                                        <a href="demo-fashion-store-single-product.html"><img
-                                                src="https://via.placeholder.com/600x765" class="cart-thumb" alt=""></a>
-                                    </div>
-                                    <div class="product-detail fw-600">
-                                        <a href="demo-fashion-store-single-product.html">Pleated dress</a>
-                                        <span class="item-ammount fw-400">2 x $15.00</span>
+                                        <a
+                                            [routerLink]="['/shop/product', item?.product?.id]">{{item?.product?.name}}</a>
+                                        <span class="item-ammount fw-400">{{item?.quantity}} x
+                                            ${{item?.product?.price}}</span>
                                     </div>
                                 </li>
                                 <li class="cart-total">
                                     <div class="fs-18 alt-font mb-15px"><span
                                             class="w-50 fw-500 text-start">Subtotal:</span><span
-                                            class="w-50 text-end fw-700">$199.99</span></div>
-                                    <a href="demo-fashion-store-cart.html"
+                                            class="w-50 text-end fw-700">${{calculateSubTotal(contextService.cart())}}</span>
+                                    </div>
+                                    <a routerLink="/shopping-cart"
                                         class="btn btn-large btn-transparent-light-gray border-color-extra-medium-gray">View
                                         cart</a>
-                                    <a href="demo-fashion-store-checkout.html"
+                                    <a routerLink="/checkout"
                                         class="btn btn-large btn-dark-gray btn-box-shadow">Checkout</a>
                                 </li>
                             </ul>

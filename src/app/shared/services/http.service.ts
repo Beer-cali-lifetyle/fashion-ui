@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { timeout } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { UiLoaderService } from '../../core/services/loader.service';
 
 export interface Options {
   withFormData: boolean;
@@ -19,32 +20,51 @@ export class HttpServie {
   private isBrowser: boolean;
 
   constructor(
-    private httpClient: HttpClient, 
+    private httpClient: HttpClient,
     private cookieService: CookieService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    // Inject a loader service if available
+    private loaderService: UiLoaderService // Assuming you have a loader service
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
-    
+
     if (this.isBrowser) {
       console.log(window.navigator.onLine ? 'Internet Connection Enabled' : 'Internet Connection Disabled');
+    }
+  }
+
+  // Method to toggle loader
+  private toggleLoader(show: boolean): void {
+    if (show) {
+      this.loaderService.start(); 
+    } else {
+      this.loaderService.stop(); 
+      // hide loader
     }
   }
 
   /**
    * Perform a get request to the API
    */
-  async GET( endpoint: string, params: any = {}): Promise<any> {
+  async GET(endpoint: string, params: any = {}, withLoader: boolean = false): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
+        if (!withLoader) this.toggleLoader(true); // Show loader if true
         this.queryParams = params;
         const result = this.httpClient.get(HttpServie.getApiUrl() + endpoint, await this.buildRequestOptions())
           .pipe();
         result.subscribe(async (response: any) => {
+          if (!withLoader) this.toggleLoader(false); 
+          // Hide loader
           resolve(response);
+        }, (error) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader on error
+          reject(error);
         });
         this.queryParams = {};
       } catch (e) {
         console.log('Caught exception in GET request: ', e);
+        if (!withLoader) this.toggleLoader(false); // Hide loader on exception
         reject(null);
         return;
       }
@@ -54,17 +74,22 @@ export class HttpServie {
   /**
    * Perform a post request to the server.
    */
-  async POST( endpoint: string, data: any | FormData = null, options: Options = { withFormData: false }): Promise<any> {
+  async POST(endpoint: string, data: any | FormData = null, options: Options = { withFormData: false }, withLoader: boolean = false): Promise<any> {
     return new Promise(async (resolve, reject) => {
       let result: Observable<any>;
       try {
+        if (!withLoader) this.toggleLoader(true); // Show loader
         result = await this.httpClient.post(HttpServie.getApiUrl() + endpoint, data, await this.buildRequestOptions(options)).pipe();
         result.subscribe(async (response: any) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader
           resolve(response);
-          return;
+        }, (error) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader on error
+          reject(error);
         });
       } catch (e) {
         console.log('Caught exception in POST request: ', e);
+        if (!withLoader) this.toggleLoader(false); // Hide loader on exception
         reject(null);
         return;
       }
@@ -74,17 +99,22 @@ export class HttpServie {
   /**
    * Perform a put request to the server.
    */
-  async PUT( endpoint: string, data: any | FormData = null, options: Options = { withFormData: false }): Promise<any> {
+  async PUT(endpoint: string, data: any | FormData = null, options: Options = { withFormData: false }, withLoader: boolean = false): Promise<any> {
     return new Promise(async (resolve, reject) => {
       let result: Observable<any>;
       try {
+        if (!withLoader) this.toggleLoader(true); // Show loader
         result = await this.httpClient.put(HttpServie.getApiUrl() + endpoint, data, await this.buildRequestOptions(options)).pipe();
         result.subscribe(async (response: any) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader
           resolve(response);
-          return;
+        }, (error) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader on error
+          reject(error);
         });
       } catch (e) {
         console.log('Caught exception in PUT request: ', e);
+        if (!withLoader) this.toggleLoader(false); // Hide loader on exception
         reject(null);
         return;
       }
@@ -94,17 +124,22 @@ export class HttpServie {
   /**
    * Perform a delete request to the server.
    */
-  async DELETE( endpoint: string): Promise<any> {
+  async DELETE(endpoint: string, withLoader: boolean = false): Promise<any> {
     return new Promise(async (resolve, reject) => {
       let result: Observable<any>;
       try {
+        if (!withLoader) this.toggleLoader(true); // Show loader
         result = await this.httpClient.delete(HttpServie.getApiUrl() + endpoint, await this.buildRequestOptions()).pipe();
         result.subscribe(async (response: any) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader
           resolve(response);
-          return;
+        }, (error) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader on error
+          reject(error);
         });
       } catch (e) {
         console.log('Caught exception in DELETE request: ', e);
+        if (!withLoader) this.toggleLoader(false); // Hide loader on exception
         reject(null);
         return;
       }
@@ -114,20 +149,27 @@ export class HttpServie {
   /**
    * Perform a download request to the server.
    */
-  BLOB(Url: string): Promise<any> {
+  BLOB(Url: string, withLoader: boolean = false): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
+        if (!withLoader) this.toggleLoader(true); // Show loader
         const result = this.httpClient.get(Url, { responseType: 'blob' }).pipe();
         result.subscribe(async (response: any) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader
           resolve(response);
+        }, (error) => {
+          if (!withLoader) this.toggleLoader(false); // Hide loader on error
+          reject(error);
         });
       } catch (e) {
         console.log('Caught exception in DOWNLOAD request: ', e);
+        if (!withLoader) this.toggleLoader(false); // Hide loader on exception
         reject(null);
         return;
       }
     });
   }
+
 
   /**
    * Generate the request options for all HttpClient calls.
@@ -148,8 +190,8 @@ export class HttpServie {
       delete headers['Content-Type'];
     }
 
-    if (this.isBrowser && this.cookieService.get('access_token')) {
-      headers.Authorization = 'Bearer ' + this.cookieService.get('access_token');
+    if (this.isBrowser && localStorage.getItem('access_token')) {
+      headers.Authorization = 'Bearer ' + localStorage.getItem('access_token');
     }
 
     return new HttpHeaders(headers);
@@ -167,6 +209,7 @@ export class HttpServie {
    * Get the API URL from environment settings.
    */
   private static getApiUrl(): string {
-    return environment.api.base_url;
+    const base_url = `${environment.api.base_url}/api`
+    return base_url;
   }
 }

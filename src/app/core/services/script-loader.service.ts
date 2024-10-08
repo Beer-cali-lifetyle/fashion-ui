@@ -17,15 +17,19 @@ export class ScriptLoaderService {
         });
     }
 
-    private loadScriptFunc(src: string): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const script = this.renderer.createElement('script');
-            script.src = src;
-            script.onload = resolve;
-            script.onerror = reject;
-            this.renderer.appendChild(document.body, script);
+    loadScriptFunc(src: string): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            const existingScript = await document.querySelector(`script[src="${src}"]`);
+
+            // If script already exists, remove it
+            if (!existingScript) {
+                const script = await document.createElement('script');
+                script.src = await src;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+
+                await document.body.appendChild(script);
+            }
         });
     }
-
-
 }

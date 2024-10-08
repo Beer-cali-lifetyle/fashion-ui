@@ -1,0 +1,62 @@
+.nav-pills .nav-link {
+    background-color: white;
+    color: black;
+    margin: 10px;
+    border: 1px solid #dee2e6; /* Optional: for a subtle border */
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #f8f9fa; /* Optional: light gray hover effect */
+    color: black;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #fee300;
+    color: black;
+    border-color: #fee300; /* Ensures the border also changes to yellow */
+}
+
+.layout-top-spacing {
+    margin-top: 20vh;
+}
+
+/* Style the checkbox */
+.form-check-in {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #dee2e6;
+    border-radius: 4px; /* Optional: make the checkbox rounded */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* When checkbox is checked */
+.form-check-in:checked {
+    background-color: #007bff; /* Customize checked background color */
+    border-color: #007bff; /* Customize checked border color */
+}
+
+/* Add checkmark when checked (optional for modern browsers) */
+.form-check-in:checked::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Optional: Hover effect */
+.form-check-in:hover {
+    border-color: #007bff;
+}
+
+/* Style the label */
+.form-check-label {
+    font-size: 16px;
+    color: #333; /* Label text color */
+    margin-left: 10px;
+}

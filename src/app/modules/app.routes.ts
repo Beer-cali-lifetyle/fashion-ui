@@ -11,13 +11,28 @@ const ModuleRoutes: Routes = [
         path: 'home', loadComponent: () => import('./index').then(c => c.HomeComponent)
     },
     {
-        path: 'shop', loadComponent: () => import('./index').then(c => c.ShopListComponent), canActivate: [AuthGuard]
+        path: 'shop', loadComponent: () => import('./index').then(c => c.ShopListComponent)
+    },
+    {
+        path: 'shop/product/:id', loadComponent: () => import('./index').then(c => c.ProductInfoComponent)
     },
     {
         path: 'collection', loadComponent: () => import('./index').then(c => c.CollectionComponent)
     },
     {
+        path: 'wishlist', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.WishlistComponent)
+    },
+    {
+        path: 'profile', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.ProfileComponent)
+    },
+    {
         path: 'contact', loadComponent: () => import('./index').then(c => c.ContactComponent)
+    },
+    {
+        path: 'shopping-cart', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.ShoppingCartComponent)
+    },
+    {
+        path: 'checkout', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.CheckoutComponent)
     }
 ]
 

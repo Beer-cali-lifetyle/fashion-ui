@@ -1,0 +1,223 @@
+<app-script-load></app-script-load>
+
+
+<div class="account-settings-container layout-top-spacing">
+
+  <div class="account-content">
+    <div class="row mb-3">
+      <div class="col-md-12 d-flex justify-content-center">
+        <ul class="nav nav-pills" id="animateLine" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="animated-underline-home-tab" data-bs-toggle="tab"
+              href="#animated-underline-home" role="tab" aria-controls="animated-underline-home"
+              aria-selected="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-home">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg> Home</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="animated-underline-profile-tab" data-bs-toggle="tab"
+              href="#animated-underline-profile" role="tab" aria-controls="animated-underline-profile"
+              aria-selected="false" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="feather feather-dollar-sign">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg> Payment Details</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="animated-underline-preferences-tab" data-bs-toggle="tab"
+              href="#animated-underline-preferences" role="tab" aria-controls="animated-underline-preferences"
+              aria-selected="false" tabindex="-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-map-pin">
+                <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Address
+            </button>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-content" id="animateLineContent-4">
+      <div class="tab-pane fade show active" id="animated-underline-home" role="tabpanel"
+        aria-labelledby="animated-underline-home-tab">
+        <div class="">
+          <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="section general-info">
+              <div class="info">
+                <h6 class="text-center">General Information</h6>
+                <div class="row">
+                  <div class="col-lg-11 mx-auto">
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-8 mt-md-0 mt-4 d-flex">
+                        <div class="form">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control mb-3" id="fullName" formControlName="fullName"
+                                  placeholder="Full Name">
+                                <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('fullName')?.errors?.['required']">
+                                    Full name is
+                                    required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="mobileNumber">Mobile Number</label>
+                                <input type="text" class="form-control mb-3" id="mobileNumber"
+                                  formControlName="mobileNumber" placeholder="Mobile Number">
+                                <div *ngIf="form.get('mobileNumber')?.touched && form.get('mobileNumber')?.invalid">
+                                  <div class="text-danger p-small"
+                                    *ngIf="form.get('mobileNumber')?.errors?.['required']">Mobile number is required.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="pinCode">Pin Code</label>
+                                <input type="text" class="form-control mb-3" id="pinCode" formControlName="pinCode"
+                                  placeholder="Pin Code">
+                                <div *ngIf="form.get('pinCode')?.touched && form.get('pinCode')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('pinCode')?.errors?.['required']">Pin
+                                    code is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea class="form-control mb-1" id="address" formControlName="address"
+                                  placeholder="Address"></textarea>
+                                <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('address')?.errors?.['required']">
+                                    Address is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="locality">Locality</label>
+                                <input type="text" class="form-control mb-3" id="locality" formControlName="locality"
+                                  placeholder="Locality">
+                                <div *ngIf="form.get('locality')?.touched && form.get('locality')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('locality')?.errors?.['required']">
+                                    Locality is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="city">City/District/Town</label>
+                                <input type="text" class="form-control mb-3" id="city" formControlName="city"
+                                  placeholder="City/District/Town">
+                                <div *ngIf="form.get('city')?.touched && form.get('city')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('city')?.errors?.['required']">
+                                    City/District/Town is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="state">State</label>
+                                <select class="form-control" formControlName="state">
+                                  <option disabled value="">Select State</option>
+                                  <option *ngFor="let state of USStates" [value]="state">
+                                    {{state }}</option>
+                                </select>
+                                <div *ngIf="form.get('state')?.touched && form.get('state')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('state')?.errors?.['required']">State
+                                    is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="landmark">Landmark</label>
+                                <input type="text" class="form-control mb-3" id="landmark" formControlName="landmark"
+                                  placeholder="Landmark">
+                                <div *ngIf="form.get('landmark')?.touched && form.get('landmark')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('landmark')?.errors?.['required']">
+                                    Landmark is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="altPhone">Alternate Phone Number</label>
+                                <input type="text" class="form-control mb-3" id="altPhone" formControlName="altPhone"
+                                  placeholder="Alternate Phone Number">
+                                <div *ngIf="form.get('altPhone')?.touched && form.get('altPhone')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('altPhone')?.errors?.['required']">
+                                    Alternate phone number is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1">
+                              <div class="form-check">
+                                <input class="form-check-in" type="checkbox" formControlName="defaultAddress"
+                                  id="customCheck1">
+                                <label class="form-check-label" for="customCheck1">Make this my default address</label>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1 mb-5">
+                              <div class="form-group text-end">
+                                <button type="submit" class="btn btn-secondary" [disabled]="form.invalid">Save</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="tab-pane fade" id="animated-underline-profile" role="tabpanel"
+        aria-labelledby="animated-underline-profile-tab">
+        <div class="row">
+
+          <app-paymentDetails></app-paymentDetails>
+
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="animated-underline-preferences" role="tabpanel"
+        aria-labelledby="animated-underline-preferences-tab">
+        <div class="row">
+
+          <app-address (dataEvent)="receiveData($event)"></app-address>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

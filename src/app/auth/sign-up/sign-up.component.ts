@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { ScriptLoadComponent } from '../../modules/script-load/script-load.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     SharedModule,
-    CommonModule
+    CommonModule,
+    ScriptLoadComponent
   ]
 })
 export class SignUpComponent implements OnInit {

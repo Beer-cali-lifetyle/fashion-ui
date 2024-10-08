@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/vendors.min.css",
               "src/assets/css/icon.min.css",
               "src/assets/css/style.css",
@@ -40,6 +41,7 @@
               "src/assets/demos/fashion-store/fashion-store.css"
             ],
             "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
             "server": "src/main.server.ts",
             "prerender": false,
@@ -103,19 +105,13 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public",
-                "output": "/assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets/"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              "public"
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/vendors.min.css",
               "src/assets/css/icon.min.css",
               "src/assets/css/style.css",
@@ -123,6 +119,7 @@
               "src/assets/demos/fashion-store/fashion-store.css"
             ],
             "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           }
         }

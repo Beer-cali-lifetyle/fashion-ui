@@ -15,7 +15,7 @@ export abstract class AppBase {
     pageSizeOptions: number[] = [10, 25, 50, 100];
     public params: Subject<any> = new Subject<any>();
     public isEdit: boolean = false;
-    public id: string | undefined;
+    public id: any;
 
     public form!: FormGroup;
     public menuForm!: FormGroup;
@@ -37,9 +37,11 @@ export abstract class AppBase {
 
     constructor() {
         this.params.subscribe((value: { id: string }) => {
-            this.id = (value.id as any) || undefined;
-            this.isEdit = ((this.id != undefined) && (this.id != '') && (this.id != null)) ? true : false;
-        })
+            this.id = value.id || undefined;
+            console.log('edv', this.id);
+            this.isEdit = !!this.id; 
+        });
+        
     }
     public checkMode(params: any) {
         this.params.next(params);

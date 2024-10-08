@@ -1,0 +1,214 @@
+<div class="mx-5 mb-5">
+  <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing card">
+    <div class="section general-info payment-info card-body bg-light">
+      <div class="info">
+        <div class="d-flex justify-content-between">
+          <h6 class="">Address</h6>
+          <button class="btn btn-secondary add-payment" (click)="openModalToAdd()">Add Address</button>
+        </div>
+        <div class="list-group mt-4">
+          <label class="list-group-item" *ngFor="let item of address; let i=index">
+            <div class="d-flex w-100">
+              <div class="billing-radio me-2">
+                <div class="form-check">
+                  <input type="radio" name="billingAddress" id="billingAddress1" [checked]="item?.is_default">
+                </div>
+              </div>
+              <div class="billing-content">
+                <div class="fw-bold fs-5">{{item?.full_name}}</div>
+                <p>{{item?.address}}, {{item?.locality}}, {{item?.city}}, {{item?.state}}, {{item?.mobile_number}}</p>
+              </div>
+              <div class="billing-edit align-self-center ms-auto">
+                <svg (click)="(editMode(item))" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                </svg>
+                <svg (click)="deleteAddress(item?.id)" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                </svg>
+              </div>
+            </div>
+          </label>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<ng-template #modalContent let-modal>
+  <div class="modal-dialog modal-dialog-centered" style="margin: 0; padding:0;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Address Details</h5>
+        <button type="button" class="close btn-close" (click)="closeModal()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="section general-info payment-info">
+          <div class="info">
+
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="section general-info">
+              <div class="info">
+                <div class="row">
+                  <div class="col-lg-11 mx-auto">
+                    <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-8 mt-md-0 mt-4 d-flex">
+                        <div class="form">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control mb-3" id="fullName" formControlName="fullName"
+                                  placeholder="Full Name">
+                                <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('fullName')?.errors?.['required']">
+                                    Full name is
+                                    required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="mobileNumber">Mobile Number</label>
+                                <input type="text" class="form-control mb-3" id="mobileNumber"
+                                  formControlName="mobileNumber" placeholder="Mobile Number">
+                                <div *ngIf="form.get('mobileNumber')?.touched && form.get('mobileNumber')?.invalid">
+                                  <div class="text-danger p-small"
+                                    *ngIf="form.get('mobileNumber')?.errors?.['required']">Mobile number is required.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="pinCode">Pin Code</label>
+                                <input type="text" class="form-control mb-3" id="pinCode" formControlName="pinCode"
+                                  placeholder="Pin Code">
+                                <div *ngIf="form.get('pinCode')?.touched && form.get('pinCode')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('pinCode')?.errors?.['required']">Pin
+                                    code is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea class="form-control mb-1" id="address" formControlName="address"
+                                  placeholder="Address"></textarea>
+                                <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('address')?.errors?.['required']">
+                                    Address is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="locality">Locality</label>
+                                <input type="text" class="form-control mb-3" id="locality" formControlName="locality"
+                                  placeholder="Locality">
+                                <div *ngIf="form.get('locality')?.touched && form.get('locality')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('locality')?.errors?.['required']">
+                                    Locality is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="city">City/District/Town</label>
+                                <input type="text" class="form-control mb-3" id="city" formControlName="city"
+                                  placeholder="City/District/Town">
+                                <div *ngIf="form.get('city')?.touched && form.get('city')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('city')?.errors?.['required']">
+                                    City/District/Town is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="state">State</label>
+                                <select class="form-control" formControlName="state">
+                                  <option disabled value="">Select State</option>
+                                  <option *ngFor="let state of USStates" [value]="state">
+                                    {{state }}</option>
+                                </select>
+                                <div *ngIf="form.get('state')?.touched && form.get('state')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('state')?.errors?.['required']">State
+                                    is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="landmark">Landmark</label>
+                                <input type="text" class="form-control mb-3" id="landmark" formControlName="landmark"
+                                  placeholder="Landmark">
+                                <div *ngIf="form.get('landmark')?.touched && form.get('landmark')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('landmark')?.errors?.['required']">
+                                    Landmark is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="altPhone">Alternate Phone Number</label>
+                                <input type="text" class="form-control mb-3" id="altPhone"
+                                  formControlName="altPhoneNumber" placeholder="Alternate Phone Number">
+                                <div *ngIf="form.get('altPhone')?.touched && form.get('altPhone')?.invalid">
+                                  <div class="text-danger p-small" *ngIf="form.get('altPhone')?.errors?.['required']">
+                                    Alternate phone number is required.</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1">
+                              <div class="form-check">
+                                <input class="form-check-in" type="checkbox" formControlName="defaultAddress"
+                                  id="customCheck1">
+                                <label class="form-check-label" for="customCheck1">Make this my default address</label>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 mt-1 mb-5">
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                  (click)="closeModal()">Close</button>
+                <button type="submit" class="btn btn-primary">{{editId ?  'Save changes' : 'Add'}}</button>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

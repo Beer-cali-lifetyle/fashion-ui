@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { RouterOutlet } from '@angular/router';
+import { LoaderComponent } from '../../shared/ui/loader/loader.component';
+import { ScriptLoadComponent } from '../../modules/script-load/script-load.component';
 
 @Component({
   selector: 'app-base-layout',
@@ -11,7 +13,8 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     HeaderComponent,
     FooterComponent,
-    RouterOutlet
+    RouterOutlet,
+    ScriptLoadComponent
   ]
 })
 export class BaseLayoutComponent implements OnInit {
