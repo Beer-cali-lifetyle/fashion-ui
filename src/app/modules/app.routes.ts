@@ -33,7 +33,13 @@ const ModuleRoutes: Routes = [
     },
     {
         path: 'checkout', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.CheckoutComponent)
-    }
+    },
+    {
+        path: 'magazines', loadComponent: () => import('./index').then(c => c.BlogListComponent)
+    },
+    {
+        path: 'orders', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.OrdersComponent)
+    },
 ]
 
 export default ModuleRoutes

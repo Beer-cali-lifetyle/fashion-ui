@@ -20,7 +20,8 @@ export class ScriptLoaderService {
     loadScriptFunc(src: string): Promise<void> {
         return new Promise(async (resolve, reject) => {
             const existingScript = await document.querySelector(`script[src="${src}"]`);
-
+            sessionStorage.clear();
+            this.clearAllCookies();
             // If script already exists, remove it
             if (!existingScript) {
                 const script = await document.createElement('script');
@@ -31,5 +32,16 @@ export class ScriptLoaderService {
                 await document.body.appendChild(script);
             }
         });
+    }
+
+    clearAllCookies(): void {
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf('=');
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        }
     }
 }

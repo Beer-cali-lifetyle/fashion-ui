@@ -25,12 +25,12 @@
                     data-anime='{ "el": "childs", "translateY": [-15, 0], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
                     <li class="grid-sizer"></li>
                     <!-- start shop item -->
-                    <li class="grid-item" *ngFor="let product of products; let i=index">
+                    <li class="grid-item" *ngFor="let product of products?.data; let i=index">
                         <div class="shop-box mb-10px">
                             <div class="shop-image mb-20px">
                                 <a [routerLink]="['/shop/product', product?.id]">
-                                    <img [src]="product?.product_image" alt="">
-                                    <span class="lable new">New</span>
+                                    <img [src]="imgBaseUrl + product?.product_image" alt="">
+                                    <!-- <span class="lable new">New</span> -->
                                     <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
                                 </a>
                                 <div class="shop-buttons-wrap">
@@ -73,40 +73,25 @@
 
                 </ul>
                 <div class="w-100 d-flex mt-4 justify-content-center md-mt-30px">
-                    <ul class="pagination pagination-style-01 fs-13 fw-500 mb-0">
-                        <li class="page-item"><a class="page-link" href="#"><i
-                                    class="feather icon-feather-arrow-left fs-18 d-xs-none"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="#">01</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">02</a></li>
-                        <li class="page-item"><a class="page-link" href="#">03</a></li>
-                        <li class="page-item"><a class="page-link" href="#">04</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i
-                                    class="feather icon-feather-arrow-right fs-18 d-xs-none"></i></a></li>
-                    </ul>
+                    <ngb-pagination [(page)]="currentPage" [collectionSize]="products?.total" [pageSize]="pageSize"
+                        [maxSize]="5" [boundaryLinks]="true" [ellipses]="true"
+                        class="pagination pagination-style-01 fs-13 fw-500 mb-0">
+                    </ngb-pagination>
                 </div>
+
             </div>
             <div class="col-xxl-2 col-lg-3 shop-sidebar"
                 data-anime='{ "el": "childs", "translateY": [-15, 0], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'>
                 <div class="mb-30px">
                     <span class="alt-font fw-500 fs-19 text-dark-gray d-block mb-10px">Filter by categories</span>
-                    <ul class="shop-filter category-filter fs-16">
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Jeans</a><span
-                                class="item-qty">22</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Trousers</a><span
-                                class="item-qty">28</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Swimwear</a><span
-                                class="item-qty">36</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Casual shirts</a><span
-                                class="item-qty">24</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Winter jackets</a><span
-                                class="item-qty">26</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Leggings</a><span
-                                class="item-qty">33</span></li>
-                        <li><a href="#"><span class="product-cb product-category-cb"></span>Dupattas</a><span
+                    <ul class="shop-filter fs-16">
+                        <li *ngFor="let item of categories" class="ps-0"><a class="d-flex"><span class="pe-2"> <input type="radio"
+                                        name="category" 
+                                        [value]="item?.id" [id]="item?.id"></span><label [for]="item?.id">{{item?.catname}}</label></a><span
                                 class="item-qty">22</span></li>
                     </ul>
                 </div>
-                <div class="mb-30px">
+                <!-- <div class="mb-30px">
                     <span class="alt-font fw-500 fs-19 text-dark-gray d-block mb-10px">Filter by color</span>
                     <ul class="shop-filter color-filter fs-16">
                         <li><a href="#"><span class="product-cb product-color-cb"
@@ -128,7 +113,7 @@
                                     style="background-color:#d9653e"></span>Orange</a><span class="item-qty">06</span>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="mb-30px">
                     <span class="alt-font fw-500 fs-19 text-dark-gray d-block mb-10px">Filter by size</span>
                     <ul class="shop-filter price-filter fs-16">
@@ -151,10 +136,12 @@
                             <!-- start slider navigation -->
                             <div
                                 class="slider-one-slide-prev-1 icon-very-small swiper-button-prev slider-navigation-style-08 me-5px">
-                                <i class="fa-solid fa-arrow-left text-dark-gray"></i></div>
+                                <i class="fa-solid fa-arrow-left text-dark-gray"></i>
+                            </div>
                             <div
                                 class="slider-one-slide-next-1 icon-very-small swiper-button-next slider-navigation-style-08 ms-5px">
-                                <i class="fa-solid fa-arrow-right text-dark-gray"></i></div>
+                                <i class="fa-solid fa-arrow-right text-dark-gray"></i>
+                            </div>
                             <!-- end slider navigation -->
                         </div>
                     </div>

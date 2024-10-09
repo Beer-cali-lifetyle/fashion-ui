@@ -1,0 +1,53 @@
+.product-listing {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #fff;
+  }
+  .product-listing img {
+    width: 60px;
+    height: auto;
+  }
+  .product-details {
+    flex-grow: 1;
+    font-size: 14px;
+  }
+  .delivered {
+    color: green;
+    font-size: 12px;
+  }
+  .product-replacement {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #333;
+  }
+  .rate-review {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  .rate-review:hover {
+    text-decoration: underline;
+  }
+  .product-price {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .card-body p {
+    margin: 0;
+  }
+  h5 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  p {
+    margin-bottom: 3px;
+  }
+
+.start {
+    margin-top: 8em;
+}

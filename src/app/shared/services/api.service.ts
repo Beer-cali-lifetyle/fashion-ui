@@ -50,84 +50,96 @@ export class ApiService {
     return await this.httpRequest.GET('/wishlist');
   }
 
-  async fetcHlatestProducts() {
-    return await this.httpRequest.GET('/random-products');
+  async fetcHlatestProducts(data: any) {
+    return await this.httpRequest.GET('/random-products', data);
   }
 
   async fetchProduct(id: string) {
-  return await this.httpRequest.GET(`/products/${id}`);
-}
+    return await this.httpRequest.GET(`/products/${id}`);
+  }
 
   async fetchFilteredProduct(data: any) {
-  return await this.httpRequest.GET(`/productfilter`, data);
-}
+    return await this.httpRequest.GET(`/productfilter`, data);
+  }
 
   async fetchAddress() {
-  return await this.httpRequest.GET('/addresses');
-}
+    return await this.httpRequest.GET('/addresses');
+  }
 
   async saveAddress(data: any) {
-  return await this.httpRequest.POST('/addresses', data);
-}
+    return await this.httpRequest.POST('/addresses', data);
+  }
 
   async editAddress(data: any, id: any) {
-  return await this.httpRequest.PUT(`/addresses/${id}`, data);
-}
+    return await this.httpRequest.PUT(`/addresses/${id}`, data);
+  }
 
   async deletAddress(id: any) {
-  return await this.httpRequest.DELETE(`/addresses/${id}`);
-}
+    return await this.httpRequest.DELETE(`/addresses/${id}`);
+  }
 
   async fetchPaymentCards(id: any) {
-  return await this.httpRequest.GET(`/payment-methods`);
-}
+    return await this.httpRequest.GET(`/payment-methods`);
+  }
 
   async savePaymentCards(data: any) {
-  return await this.httpRequest.POST('/payment-methods', data);
-}
+    return await this.httpRequest.POST('/payment-methods', data);
+  }
 
   async editPaymentCards(data: any, id: any) {
-  return await this.httpRequest.PUT(`/payment-methods/${id}`, data);
-}
+    return await this.httpRequest.PUT(`/payment-methods/${id}`, data);
+  }
 
   async deletePaymentCards(id: any) {
-  return await this.httpRequest.DELETE(`/payment-methods/${id}`);
-}
+    return await this.httpRequest.DELETE(`/payment-methods/${id}`);
+  }
 
   async addToCart(data: any) {
-  return await this.httpRequest.POST(`/cart`, data);
-}
+    return await this.httpRequest.POST(`/cart`, data);
+  }
 
   async getCartProducts() {
-  return await this.httpRequest.GET(`/cart`);
-}
+    return await this.httpRequest.GET(`/cart`);
+  }
 
   async removeItemCart(id: any) {
-  return await this.httpRequest.DELETE(`/cart/${id}`);
-}
+    return await this.httpRequest.DELETE(`/cart/${id}`);
+  }
 
   async clearCart() {
-  return await this.httpRequest.DELETE(`/cart/clear`);
-}
+    return await this.httpRequest.DELETE(`/cart/clear`);
+  }
 
   async updateQuantity(data: any, id: any) {
-  return await this.httpRequest.PUT(`/cart/${id}`, data);
-}
+    return await this.httpRequest.PUT(`/cart/${id}`, data);
+  }
 
   async fetchWishlist() {
-  return await this.httpRequest.GET(`/wishlist`);
-}
+    return await this.httpRequest.GET(`/wishlist`);
+  }
 
   async addToWishlist(data: any) {
-  return await this.httpRequest.POST(`/wishlist`, data);
-}
+    return await this.httpRequest.POST(`/wishlist`, data);
+  }
 
   async removeFromWishlist(id: any) {
-  return await this.httpRequest.DELETE(`/wishlist/${id}`);
-}
+    return await this.httpRequest.DELETE(`/wishlist/${id}`);
+  }
 
   async contactUs(data: any) {
-  return await this.httpRequest.POST('/contact', data)
-}
+    return await this.httpRequest.POST('/contact', data)
+  }
+
+  async fetchBlogs() {
+    return await this.httpRequest.GET(`/blogs`);
+  }
+
+  async placeOrder(data: any) {
+    return await this.httpRequest.POST(`/orders`, data);
+  }
+
+  async fetchOrders(id: any) {
+    return await this.httpRequest.GET(`/users/${id}/orders`);
+  }
 
 }

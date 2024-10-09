@@ -1,0 +1,21 @@
+<div class="container start">
+  <div class="row " *ngFor="let order of orders">
+    <div class="col-md-12">
+      <div *ngFor="let product of order?.products" class="d-flex align-items-center mb-2 product-listing">
+        <div class="col-md-1">
+          <img src="https://via.placeholder.com/60" alt="Product Image">
+        </div>
+        <div class="col-md-9 product-details">
+          <h5 class="py-0 my-0">{{product?.product_name}}</h5>
+          <p class="py-0 my-0">Quantity: <span class="fw-bold">{{product?.quantity}}</span></p>
+          <span class="product-price my-0">₹{{product?.price}}</span>
+        </div>
+        <div class="col-md-2 text-end">
+          <p class="delivered">● Delivered on {{order?.deliveryDate}}</p>
+          <p style="font-size: 12px;">Your item has been delivered</p>
+          <a href="#" class="rate-review">★ Rate & Review Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

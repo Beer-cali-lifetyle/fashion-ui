@@ -7,3 +7,5 @@ export * from './wishlist/wishlist.component';
 export * from './profile/profile.component';
 export * from './shopping-cart/shopping-cart.component';
 export * from './checkout/checkout.component';
+export * from './blog-section/blog-list/blog-list.component';
+export * from './orders/orders.component';

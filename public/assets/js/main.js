@@ -1887,15 +1887,15 @@
                 resetIsotopeLayoutLoop(isotopeObjs, true)
             }, 300)
         }
-        if ($(window).width() <= 1199) {
+        // if ($(window).width() <= 1199) {
             destroyAtropos();
             destroySkrollr()
-        } else {
-            if (typeof Atropos !== "undefined" && typeof Atropos !== null) {
-                initAtropos()
-            }
-            initSkrollr()
-        }
+        // } else {
+        //     if (typeof Atropos !== "undefined" && typeof Atropos !== null) {
+        //         initAtropos()
+        //     }
+        //     initSkrollr()
+        // }
     });
     $(window).on("orientationchange", function(e) {
         setOverLayerPosition();
@@ -2727,42 +2727,42 @@
     function stackAnimation() {
         windowScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         $(".stack-box").each(function() {
-            if ($(window).width() > 1199) {
-                var _this = $(this);
-                var stackItems = _this.find(".stack-item");
-                if (stackItems.length) {
-                    if (windowScrollTop > stackLastScroll) {
-                        _this.addClass("forward");
-                        _this.removeClass("reverse")
-                    } else {
-                        _this.removeClass("forward");
-                        _this.addClass("reverse")
-                    }
-                    for (let i = 0; i < stackItems.length - 1; i++) {
-                        var stackBoxHeight = _this.height() / _this.find(".stack-item").length * i;
-                        var stackTopPosition = _this.offset().top;
-                        if (windowScrollTop - stackTopPosition > stackBoxHeight) {
-                            var yMove = windowScrollTop - stackTopPosition - stackBoxHeight;
-                            if (yMove > _this.outerHeight()) {
-                                yMove = _this.outerHeight()
-                            }
-                            $(stackItems[i]).css({
-                                height: "calc(100vh - " + yMove + "px)"
-                            });
-                            $(stackItems[i]).addClass("active")
-                        } else {
-                            $(stackItems[i]).css({
-                                height: "calc(100vh - 0px)"
-                            });
-                            $(stackItems[i]).removeClass("active")
-                        }
-                    }
-                }
-            } else {
-                $(".stack-box .stack-item").css({
-                    height: "inherit"
-                })
-            }
+            // if ($(window).width() > 1199) {
+            //     var _this = $(this);
+            //     var stackItems = _this.find(".stack-item");
+            //     if (stackItems.length) {
+            //         if (windowScrollTop > stackLastScroll) {
+            //             _this.addClass("forward");
+            //             _this.removeClass("reverse")
+            //         } else {
+            //             _this.removeClass("forward");
+            //             _this.addClass("reverse")
+            //         }
+            //         for (let i = 0; i < stackItems.length - 1; i++) {
+            //             var stackBoxHeight = _this.height() / _this.find(".stack-item").length * i;
+            //             var stackTopPosition = _this.offset().top;
+            //             if (windowScrollTop - stackTopPosition > stackBoxHeight) {
+            //                 var yMove = windowScrollTop - stackTopPosition - stackBoxHeight;
+            //                 if (yMove > _this.outerHeight()) {
+            //                     yMove = _this.outerHeight()
+            //                 }
+            //                 $(stackItems[i]).css({
+            //                     height: "calc(100vh - " + yMove + "px)"
+            //                 });
+            //                 $(stackItems[i]).addClass("active")
+            //             } else {
+            //                 $(stackItems[i]).css({
+            //                     height: "calc(100vh - 0px)"
+            //                 });
+            //                 $(stackItems[i]).removeClass("active")
+            //             }
+            //         }
+            //     }
+            // } else {
+                // $(".stack-box .stack-item").css({
+                //     height: "inherit"
+                // })
+            // }
         });
         stackLastScroll = windowScrollTop
     }
@@ -2772,26 +2772,26 @@
     var atroposItems = document.querySelectorAll("[data-atropos]");
 
     function initAtropos() {
-        if (atroposItems.length && $(window).width() > 1199) {
-            atroposItems.forEach(function(atroposItem) {
-                var myAtropos = Atropos({
-                    el: atroposItem
-                })
-            })
-        }
+        // if (atroposItems.length && $(window).width() > 1199) {
+        //     atroposItems.forEach(function(atroposItem) {
+        //         var myAtropos = Atropos({
+        //             el: atroposItem
+        //         })
+        //     })
+        // }
     }
     if (typeof Atropos !== "undefined" && Atropos !== null) {
         initAtropos()
     }
 
     function destroyAtropos() {
-        if (atroposItems.length && $(window).width() > 1199) {
-            atroposItems.forEach(function(atroposItem) {
-                if (atroposItem.__atropos__) {
-                    atroposItem.__atropos__.destroy()
-                }
-            })
-        }
+        // if (atroposItems.length && $(window).width() > 1199) {
+        //     atroposItems.forEach(function(atroposItem) {
+        //         if (atroposItem.__atropos__) {
+        //             atroposItem.__atropos__.destroy()
+        //         }
+        //     })
+        // }
     }
     var getElementsInArea = function(docElm) {
         var viewportHeight = docElm.clientHeight;

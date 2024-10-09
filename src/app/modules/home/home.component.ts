@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID, OnInit, ChangeDetectorRef } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import Swiper from 'swiper';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -9,16 +9,21 @@ import { ApiService } from '../../shared/services/api.service';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { ContextService } from '../../core/services/context.service';
+import { ScriptLoaderService } from '../../core/services/script-loader.service';
+import { AppBase } from '../../../app-base.component';
+declare var Isotope: any
+
+
 
 @Component({
   imports: [
     CommonModule,
     SharedModule,
-    ScriptLoadComponent
+    ScriptLoadComponent,
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   standalone: true,
   animations: [
     trigger('slideIn', [
@@ -29,9 +34,10 @@ import { ContextService } from '../../core/services/context.service';
     ])
   ]
 })
-export class HomeComponent implements AfterViewInit {
-  categories: any = [];
+export class HomeComponent extends AppBase implements AfterViewInit {
+  categories: any[] = [];
   products: any = [];
+  blogs: any = [];
   imgBaseUrl: string = environment.api.base_url;
   lookbookData = {
     year: 'Lookbook 2023',
@@ -70,7 +76,6 @@ export class HomeComponent implements AfterViewInit {
       // Add more slides here
     ],
   };
-
   sliderOptions = {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -143,66 +148,88 @@ export class HomeComponent implements AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private ApiService: ApiService,
     private router: Router,
-    private contextService: ContextService) {
+    private contextService: ContextService,
+    private cdr: ChangeDetectorRef,
+    private scriptService: ScriptLoaderService) {
+    super();
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   async ngOnInit() {
     await this.fetchCategories();
     await this.fetchProducts();
+    await this.fetchBlogs()
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    await this.scriptService.loadScripts();
+    await this.cdr.detectChanges();
     if (this.isBrowser) {
-      setTimeout(() => {
-        const swiper = new Swiper('.swiper', {
-          slidesPerView: 1,
-          direction: 'horizontal',
-          loop: true,
-          parallax: true,
-          speed: 1000,
-          pagination: {
-            el: '.swiper-number',
-            clickable: true
+      this.initializeSwiper();
+    }
+  }
+
+
+  initializeSwiper() {
+    setTimeout(async () => {
+      await this.initializeGrid();
+      new Swiper('.product-slider', {
+        slidesPerView: 4,  // 4 cards per slide
+        spaceBetween: 30,  // Adjust the space between cards (optional)
+        loop: true,        // Infinite loop
+        autoplay: {
+          delay: 3000,     // Auto-slide every 3 seconds (can adjust)
+          disableOnInteraction: false
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          1024: {
+            slidesPerView: 4,  // Desktop large screens
+            spaceBetween: 30
           },
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false
+          768: {
+            slidesPerView: 3,  // Tablet screens
+            spaceBetween: 20
           },
-          keyboard: {
-            enabled: true,
-            onlyInViewport: true
+          640: {
+            slidesPerView: 2,  // Mobile screens
+            spaceBetween: 10
           },
-          effect: 'slide'
-        });
-      }, 0);
-      // anime({
-      //   targets: '.row .col',
-      //   translateX: [30, 0],
-      //   opacity: [0, 1],
-      //   duration: 100,
-      //   delay: anime.stagger(100),
-      //   easing: 'easeOutQuad'
-      // });
-      // anime({
-      //   targets: '.childs',
-      //   translateY: [-15, 0],
-      //   perspective: [1200, 1200],
-      //   scale: [1.1, 1],
-      //   rotateX: [50, 0],
-      //   opacity: [0, 1],
-      //   duration: 400,
-      //   delay: 100,
-      //   easing: 'easeOutQuad'
-      // });
-      // anime({
-      //   targets: '.childs', 
-      //   translateY: [-15, 0],
-      //   opacity: [0, 1],
-      //   duration: 300,
-      //   delay: 0,
-      //   easing: 'easeOutQuad',
-      // });
+          320: {
+            slidesPerView: 1,  // Small mobile screens
+            spaceBetween: 10
+          }
+        }
+      });
+    }, 500);
+  }
+
+  initializeGrid() {
+    const elem = document.querySelector('.shop-wrapper');
+    const iso = new Isotope(elem, {
+      itemSelector: '.grid-item',
+      layoutMode: 'fitRows' // or your preferred layout mode
+    });
+  }
+
+  async fetchBlogs() {
+    await this.ApiService.fetchBlogs().then((res) => {
+      this.blogs = res
+    })
+  }
+
+  redirectToShopList(type: string, id: number) {
+    if (type === 'category') {
+      this.router.navigate(['/shop'], { queryParams: { categoryId: id } });
+    } else if (type === 'subcategory') {
+      this.router.navigate(['/shop'], { queryParams: { subcategoryId: id } });
     }
   }
 
@@ -213,7 +240,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   async fetchProducts() {
-    await this.ApiService.fetcHlatestProducts().then(res => {
+    await this.ApiService.fetcHlatestProducts({ perPage: this.pageSize, page: this.currentPage }).then(res => {
       this.products = res?.data;
     })
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ScriptLoadComponent } from '../script-load/script-load.component';
 import { ApiService } from '../../shared/services/api.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -23,21 +23,24 @@ export class ShoppingCartComponent implements OnInit {
     private ApiService: ApiService,
     private activatedRoute: ActivatedRoute,
     private toaster: UiToasterService,
-    public contextService: ContextService
+    public contextService: ContextService,
+    private cdr: ChangeDetectorRef
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.contextService.cart().subscribe((cartData: any) => {
       if (cartData && cartData.data) {
         this.calculateSubTotal(cartData.data);
       }
     });
+    await this.getCart();
   }
 
   async getCart() {
-      await this.ApiService.getCartProducts().then((res) => {
-        this.contextService.cart.set(res)
-      })
+    await this.ApiService.getCartProducts().then((res) => {
+      this.contextService.cart.set(res)
+      this.cdr.detectChanges();
+    })
   }
 
   async removeItemFromCart(id: any) {

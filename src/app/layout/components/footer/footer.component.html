@@ -11,14 +11,11 @@
               <!-- start footer column -->
               <div class="col">
                   <ul class="footer-navbar text-center text-md-end">
-                      <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                      <li class="nav-item"><a href="demo-fashion-store-shop.html" class="nav-link">Shop</a></li>
-                      <li class="nav-item"><a href="demo-fashion-store-collection.html"
-                              class="nav-link">Collection</a></li>
-                      <li class="nav-item"><a href="demo-fashion-store-magazine.html" class="nav-link">Magazine</a>
+                      <li class="nav-item"><a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="nav-link">Home</a></li>
+                      <li class="nav-item"><a routerLink="/shop" class="nav-link">Shop</a></li>
+                      <li class="nav-item"><a routerLink="/magazines" class="nav-link">Magazine</a>
                       </li>
-                      <li class="nav-item"><a href="demo-fashion-store-about.html" class="nav-link">About</a></li>
-                      <li class="nav-item"><a href="demo-fashion-store-contact.html" class="nav-link">Contact</a></li>
+                      <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
                   </ul>
               </div>
               <!-- end footer column -->
@@ -136,27 +133,3 @@
   </footer>
   <!-- end footer -->
 
-
-      <!-- start cookie message -->
-      <div id="cookies-model" class="cookie-message bg-dark-gray border-radius-8px">
-        <div class="cookie-description fs-14 text-white mb-20px lh-22">We use cookies to enhance your browsing
-            experience, serve personalized ads or content, and analyze our traffic. By clicking "Allow cookies" you
-            consent to our use of cookies. </div>
-        <div class="cookie-btn">
-            <a href="#"
-                class="btn btn-transparent-white border-1 border-color-transparent-white-light btn-very-small btn-switch-text btn-rounded w-100 mb-15px"
-                aria-label="btn">
-                <span>
-                    <span class="btn-double-text" data-text="Cookie policy">Cookie policy</span>
-                </span>
-            </a>
-            <a href="#"
-                class="btn btn-white btn-very-small btn-switch-text btn-box-shadow accept_cookies_btn btn-rounded w-100"
-                data-accept-btn aria-label="text">
-                <span>
-                    <span class="btn-double-text" data-text="Allow cookies">Allow cookies</span>
-                </span>
-            </a>
-        </div>
-    </div>
-    <!-- end cookie message -->

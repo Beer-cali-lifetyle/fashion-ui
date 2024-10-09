@@ -1,86 +1,30 @@
 <app-script-load></app-script-load>
 
-<section class="p-0">
+<section class="p-0" *ngIf="categories.length > 0">
     <div class="swiper full-screen top-space-margin md-h-600px sm-h-500px magic-cursor magic-cursor-vertical swiper-number-pagination-progress swiper-number-pagination-progress-vertical"
-        data-slider-options='{ "slidesPerView": 1, "direction": "horizontal", "loop": true, "parallax": true, "speed": 1000, "pagination": { "el": ".swiper-number", "clickable": true }, "autoplay": { "delay": 4000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1199": { "direction": "vertical" }}, "effect": "slide" }'
-        data-swiper-number-pagination-progress="true">
+        [attr.data-slider-options]="sliderOptions"
+        [attr.data-swiper-number-pagination-progress]="true">
         <div class="swiper-wrapper">
-            <!-- start slider item -->
-            <div class="swiper-slide overflow-hidden">
+            <div class="swiper-slide overflow-hidden" *ngFor="let category of categories">
                 <div class="cover-background position-absolute top-0 start-0 w-100 h-100" data-swiper-parallax="500"
-                    style="background-image:url('https://craftohtml.themezaa.com/images/demo-fashion-store-slider-01.jpg');">
+                    [ngStyle]="{'background-image': 'url(' + imgBaseUrl + category?.image_file + ')'}">
                     <div class="container h-100">
                         <div class="row align-items-center h-100 justify-content-start">
                             <div
                                 class="col-md-10 position-relative text-white d-flex flex-column justify-content-center h-100">
                                 <div data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutQuad", "duration": 500, "delay": 300 }'
-                                    class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px"><span
-                                        class="text-highlight">Discount on selected collection!<span
-                                            class="bg-base-color h-8px bottom-0px"></span></span></div>
+                                    class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px">
+                                    <span class="text-highlight">Discount on selected collection!
+                                        <span class="bg-base-color h-8px bottom-0px"></span>
+                                    </span>
+                                </div>
                                 <div class="alt-font fs-120 xs-fs-95 lh-100 mb-40px text-dark-gray fw-600 transform-origin-right ls-minus-5px sm-mb-25px"
                                     data-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
-                                    <span class="d-block">Women's</span>
+                                    <span class="d-block">{{category?.catname}}'s</span>
                                     <span class="d-block fw-300">collection</span>
                                 </div>
-                                <div
-                                    data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
-                                    <a href="demo-fashion-store-shop.html"
-                                        class="btn btn-dark-gray btn-box-shadow btn-large">View collection</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end slider item -->
-            <!-- start slider item -->
-            <div class="swiper-slide overflow-hidden">
-                <div class="cover-background position-absolute top-0 start-0 w-100 h-100" data-swiper-parallax="500"
-                    style="background-image:url('https://craftohtml.themezaa.com/images/demo-fashion-store-slider-02.jpg');">
-                    <div class="container h-100">
-                        <div class="row align-items-center h-100 justify-content-start">
-                            <div
-                                class="col-md-10 position-relative text-white d-flex flex-column justify-content-center h-100">
-                                <div data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutQuad", "duration": 500, "delay": 300 }'
-                                    class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px"><span
-                                        class="text-highlight">Discount on selected collection!<span
-                                            class="bg-base-color h-8px bottom-0px"></span></span></div>
-                                <div class="alt-font fs-120 xs-fs-95 lh-100 mb-40px text-dark-gray fw-600 transform-origin-right ls-minus-5px sm-mb-25px"
-                                    data-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
-                                    <span class="d-block">Men's</span>
-                                    <span class="d-block fw-300">collection</span>
-                                </div>
-                                <div
-                                    data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
-                                    <a href="demo-fashion-store-shop.html"
-                                        class="btn btn-dark-gray btn-box-shadow btn-large">View collection</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end slider item -->
-            <!-- start slider item -->
-            <div class="swiper-slide overflow-hidden">
-                <div class="cover-background position-absolute top-0 start-0 w-100 h-100" data-swiper-parallax="500"
-                    style="background-image:url('https://craftohtml.themezaa.com/images/demo-fashion-store-slider-03.jpg');">
-                    <div class="container h-100">
-                        <div class="row align-items-center h-100 justify-content-start">
-                            <div
-                                class="col-md-10 position-relative text-white d-flex flex-column justify-content-center h-100">
-                                <div data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutQuad", "duration": 500, "delay": 300 }'
-                                    class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px"><span
-                                        class="text-highlight">Discount on selected collection!<span
-                                            class="bg-base-color h-8px bottom-0px"></span></span></div>
-                                <div class="alt-font fs-120 xs-fs-95 lh-100 mb-40px text-dark-gray fw-600 transform-origin-right ls-minus-5px sm-mb-25px"
-                                    data-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
-                                    <span class="d-block">Children's</span>
-                                    <span class="d-block fw-300">collection</span>
-                                </div>
-                                <div
-                                    data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
-                                    <a href="demo-fashion-store-shop.html"
+                                <div data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
+                                    <a (click)="redirectToShopList('category', category.id)"
                                         class="btn btn-dark-gray btn-box-shadow btn-large">View collection</a>
                                 </div>
                             </div>
@@ -103,8 +47,9 @@
         <!-- end slider pagination -->
     </div>
 </section>
-<!-- end section -->
-<!-- start section -->
+
+
+
 <section class="half-section">
     <div class="container">
         <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2"
@@ -164,20 +109,18 @@
         </div>
     </div>
 </section>
-<!-- end section -->
 <!-- start section -->
 <section class="pt-0 pb-0 ps-7 pe-7 lg-ps-3 lg-pe-3 xs-p-0">
     <div class="container-fluid">
         <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2"
             data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
-
-            <div class="col categories-style-02 lg-mb-30px" *ngFor="let category of categories">
+            <div class="col categories-style-02 lg-mb-30px" *ngFor="let category of categories | slice:0:4">
                 <div class="categories-box">
-                    <a href="demo-fashion-store-shop.html">
-                        <img class="sm-w-100" [src]="imgBaseUrl + category?.image_file" alt="" />
+                    <a (click)="redirectToShopList('category', category.id)">
+                        <img class="category-image" [src]="imgBaseUrl + category?.image_file" alt="" />
                     </a>
                     <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                        <a href="demo-fashion-store-shop.html"
+                        <a (click)="redirectToShopList('category', category.id)"
                             class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
                             <span>
                                 <span class="btn-double-text ls-0px"
@@ -193,6 +136,7 @@
 </section>
 <!-- end section -->
 <!-- start section -->
+<!-- start section -->
 <section class="ps-7 pe-7 pb-3 lg-ps-3 lg-pe-3 sm-pb-6 xs-px-0">
     <div class="container">
         <div class="row mb-5 xs-mb-8">
@@ -206,61 +150,120 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 product-section">
-                <ul
-                    class="shop-modern shop-wrapper row grid grid-5col lg-grid-4col md-grid-3col sm-grid-2col xs-grid-1col gutter-extra-large text-center">
-                    <li class="grid-sizer"></li>
-                    <li class="grid-item" *ngFor="let product of products">
-                        <div class="shop-box mb-10px">
-                            <div class="shop-image mb-20px">
-                                <a [routerLink]="['/shop/product', product?.id]">
-                                    <img [src]="imgBaseUrl + product.product_image" alt="">
-                                    <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                </a>
-                                <div class="shop-buttons-wrap">
-                                    <a (click)="addToCart(product?.id)"
-                                        class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                        <i class="feather icon-feather-shopping-bag"></i><span
-                                            class="quick-view-text button-text">Add to cart</span>
+                <div class="swiper-container product-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let product of products">
+                            <div class="shop-box mb-10px">
+                                <div class="shop-image mb-20px position-relative">
+                                    <a [routerLink]="['/shop/product', product?.id]">
+                                        <img [src]="imgBaseUrl + product.product_image" alt="Product image"
+                                            class="img-fluid uniform-img">
+                                        <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
                                     </a>
+                                    <div class="shop-hover top-right">
+                                        <a (click)="addToWishlist(product?.id)"
+                                            class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle"
+                                            data-bs-toggle="tooltip" title="Add to wishlist">
+                                            <i class="feather icon-feather-heart fs-16"></i>
+                                        </a>
+                                    </div>
+                                    <div class="shop-buttons-wrap animated fadeIn">
+                                        <a (click)="addToCart(product?.id)"
+                                            class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
+                                            <i class="feather icon-feather-shopping-bag"></i>
+                                            <span class="quick-view-text button-text">Add to cart</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="shop-hover d-flex justify-content-center">
-                                    <ul>
-                                        <li>
-                                            <a (click)="addToWishlist(product?.id)"
-                                                class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle"
-                                                data-bs-toggle="tooltip" title="Add to wishlist">
-                                                <i class="feather icon-feather-heart fs-16"></i>
-                                            </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="#"
-                                                class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle"
-                                                data-bs-toggle="tooltip" title="Quick shop">
-                                                <i class="feather icon-feather-eye fs-16"></i>
-                                            </a>
-                                        </li> -->
-                                    </ul>
+                                <div class="shop-footer text-center">
+                                    <a href="demo-fashion-store-single-product.html"
+                                        class="alt-font text-dark-gray fs-19 fw-500">{{product.name}}</a>
+                                    <div class="price lh-22 fs-16"><del>$200.00</del> ${{product.price}}</div>
                                 </div>
-                            </div>
-                            <div class="shop-footer text-center">
-                                <a href="demo-fashion-store-single-product.html"
-                                    class="alt-font text-dark-gray fs-19 fw-500">{{product.name}}</a>
-                                <div class="price lh-22 fs-16"><del>$200.00</del> ${{product.price}}</div>
                             </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                    <!-- Pagination and navigation controls -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- end section -->
+<!-- end section -->
+<section class="pt-0 appear anime-complete"
+    data-anime="{ &quot;translateX&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
+    style="">
+    <div class="container-fluid ps-8 pe-8">
+        <div class="row position-relative">
+            <div class="col swiper text-cente feather-shadow swiper-initialized swiper-horizontal swiper-backface-hidden"
+                data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;:0, &quot;centeredSlides&quot;: true, &quot;speed&quot;: 8000, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-2&quot;, &quot;clickable&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;autoplay&quot;: { &quot;delay&quot;:1, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
+                <div class="swiper-wrapper pb-20px swiper-width-auto marquee-slide"
+                    style="transition-duration: 8000ms; transform: translate3d(-3287.21px, 0px, 0px);"
+                    id="swiper-wrapper-4d43868ed7fec210f" aria-live="off">
+
+
+                    <div class="swiper-slide" role="group" aria-label="3 / 6" data-swiper-slide-index="2">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Free shipping for orders over $130</div>
+                    </div>
+                    <div class="swiper-slide" role="group" aria-label="4 / 6" data-swiper-slide-index="3">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Pay with multiple credit cards</div>
+                    </div>
+                    <div class="swiper-slide" role="group" aria-label="5 / 6" data-swiper-slide-index="4">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Get offer up to 50% on modern Design</div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-prev" role="group" aria-label="6 / 6"
+                        data-swiper-slide-index="5">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Free shipping for orders over $130</div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 6"
+                        data-swiper-slide-index="0">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Pay with multiple credit cards</div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6"
+                        data-swiper-slide-index="1">
+                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
+                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
+                            Get offer up to 50% on modern Design</div>
+                    </div>
+                </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- start section -->
+<section class="p-15px bg-dark-gray text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="fs-15 text-uppercase fw-500">Take an extra 25% discount our favorite dress style. Use
+                    code:<span
+                        class="fs-14 fw-700 lh-28 alt-font text-dark-gray text-uppercase bg-base-color d-inline-block border-radius-30px ps-15px pe-15px ms-5px align-middle">fw205</span></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="position-relative pt-0 overflow-hidden ps-7 pe-7 pb-3 lg-ps-3 lg-pe-3 sm-pb-6 xs-px-0">
     <div class="container-fluid position-relative z-index-9">
         <div class="row align-items-center mb-6 mt-7 xs-mb-30px xs-mt-35px">
             <div class="col-xl-2 col-lg-3 md-mb-40px appear anime-complete"
-                data-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
-                style="">
+                data-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                 <div class="feature-box feature-box-left-icon-middle mb-5px">
                     <div class="feature-box-icon me-5px">
                         <i class="bi bi-heart-fill text-red fs-13"></i>
@@ -278,8 +281,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-01.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-01.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     02</div>
@@ -291,8 +294,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-03.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-03.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     03</div>
@@ -304,8 +307,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-02.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-02.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     05</div>
@@ -317,8 +320,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-10.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-10.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     03</div>
@@ -330,8 +333,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-04.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-04.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     08</div>
@@ -343,8 +346,8 @@
                         <div class="categories-box">
                             <div class="icon-box position-relative mb-10px">
                                 <a href=""><img
-                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-05.png"
-                                        alt="" data-no-retina=""></a>
+                                        src="https://craftohtml.themezaa.com/images/demo-decor-store-icon-05.png" alt=""
+                                        data-no-retina=""></a>
                                 <div
                                     class="count-circle d-flex align-items-center justify-content-center w-35px h-35px bg-base-color text-white rounded-circle alt-font fw-600 fs-12">
                                     04</div>
@@ -355,7 +358,7 @@
                 </div>
             </div>
         </div>
-        <div class="row g-0">
+        <!-- <div class="row g-0">
             <div class="col-12 filter-content">
                 <ul class="shop-wrapper shop-grid grid grid-2col xxl-grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-large text-center appear anime-child anime-complete"
                     data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translate&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
@@ -435,71 +438,7 @@
 
                 </ul>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="pt-0 appear anime-complete"
-    data-anime="{ &quot;translateX&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
-    style="">
-    <div class="container-fluid ps-8 pe-8">
-        <div class="row position-relative">
-            <div class="col swiper text-cente feather-shadow swiper-initialized swiper-horizontal swiper-backface-hidden"
-                data-slider-options="{ &quot;slidesPerView&quot;: &quot;auto&quot;, &quot;spaceBetween&quot;:0, &quot;centeredSlides&quot;: true, &quot;speed&quot;: 8000, &quot;loop&quot;: true, &quot;pagination&quot;: { &quot;el&quot;: &quot;.slider-four-slide-pagination-2&quot;, &quot;clickable&quot;: false }, &quot;allowTouchMove&quot;: false, &quot;autoplay&quot;: { &quot;delay&quot;:1, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-four-slide-next-2&quot;, &quot;prevEl&quot;: &quot;.slider-four-slide-prev-2&quot; }, &quot;keyboard&quot;: { &quot;enabled&quot;: true, &quot;onlyInViewport&quot;: true }, &quot;effect&quot;: &quot;slide&quot; }">
-                <div class="swiper-wrapper pb-20px swiper-width-auto marquee-slide"
-                    style="transition-duration: 8000ms; transform: translate3d(-3287.21px, 0px, 0px);"
-                    id="swiper-wrapper-4d43868ed7fec210f" aria-live="off">
-
-
-                    <div class="swiper-slide" role="group" aria-label="3 / 6" data-swiper-slide-index="2">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Free shipping for orders over $130</div>
-                    </div>
-                    <div class="swiper-slide" role="group" aria-label="4 / 6" data-swiper-slide-index="3">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Pay with multiple credit cards</div>
-                    </div>
-                    <div class="swiper-slide" role="group" aria-label="5 / 6" data-swiper-slide-index="4">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Get offer up to 50% on modern Design</div>
-                    </div>
-                    <div class="swiper-slide swiper-slide-prev" role="group" aria-label="6 / 6"
-                        data-swiper-slide-index="5">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Free shipping for orders over $130</div>
-                    </div>
-                    <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 6"
-                        data-swiper-slide-index="0">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Pay with multiple credit cards</div>
-                    </div>
-                    <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6"
-                        data-swiper-slide-index="1">
-                        <div class="fs-50 text-dark-gray alt-font fw-700 ls-minus-1px"><span
-                                class="w-15px h-15px border border-2 border-radius-100 border-color-medium-gray d-inline-block align-middle ms-50px me-50px"></span>
-                            Get offer up to 50% on modern Design</div>
-                    </div>
-                </div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- start section -->
-<section class="p-15px bg-dark-gray text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <span class="fs-15 text-uppercase fw-500">Take an extra 25% discount our favorite dress style. Use
-                    code:<span
-                        class="fs-14 fw-700 lh-28 alt-font text-dark-gray text-uppercase bg-base-color d-inline-block border-radius-30px ps-15px pe-15px ms-5px align-middle">fw205</span></span>
-            </div>
-        </div>
+        </div> -->
     </div>
 </section>
 <!-- end section -->
@@ -1018,86 +957,28 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <ul class="blog-classic blog-wrapper  grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large"
-                    data-anime='{ "el": "childs", "translateY": [15, 0], "translateX": [-15, 0], "opacity": [0,1], "duration": 500, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                    <li class="grid-sizer"></li>
+                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2"
+                    data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
                     <!-- start blog item -->
-                    <li class="grid-item">
+                    <div class="col categories-style-02 lg-mb-30px shadow-lg pt-2 me-2 blog-overflow" *ngFor="let blog of blogs">
                         <div class="card bg-transparent border-0 h-100">
                             <div class="blog-image position-relative overflow-hidden">
-                                <a href="demo-fashion-store-blog-single-creative.html"><img
-                                        src="https://craftohtml.themezaa.com/images/demo-fashion-store-blog-01.jpg"
-                                        alt="" /></a>
+                                <a><img [src]="imgBaseUrl + blog?.blogimage" alt="" /></a>
                             </div>
                             <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                <span class="mb-5px d-block">By <a href="#"
-                                        class="text-dark-gray fw-500 categories-text">Den viliamson</a><a href="#"
-                                        class="blog-date">26 December 2023</a></span>
+                                <span class="mb-5px d-block">
+                                    By <a href="#" class="text-dark-gray fw-500 categories-text">{{blog?.author}}</a>
+                                    <a href="#" class="blog-date float-end">{{blog?.updated_at | date}}</a>
+                                </span>
                                 <a href="demo-fashion-store-blog-single-creative.html"
-                                    class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Elegance
-                                    is not standing out, but being remembered.</a>
+                                   class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">
+                                    {{blog?.title}}.
+                                </a>
                             </div>
                         </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item">
-                        <div class="card bg-transparent border-0 h-100">
-                            <div class="blog-image position-relative overflow-hidden">
-                                <a href="demo-fashion-store-blog-single-creative.html"><img
-                                        src="https://craftohtml.themezaa.com/images/demo-fashion-store-blog-02.jpg"
-                                        alt="" /></a>
-                            </div>
-                            <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                <span class="mb-5px d-block">By <a href="#"
-                                        class="text-dark-gray fw-500 categories-text">Hugh macleod</a><a href="#"
-                                        class="blog-date">20 December 2023</a></span>
-                                <a href="demo-fashion-store-blog-single-creative.html"
-                                    class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Fashion
-                                    is the armor to survive the reality of everyday life.</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item">
-                        <div class="card bg-transparent border-0 h-100">
-                            <div class="blog-image position-relative overflow-hidden">
-                                <a href="demo-fashion-store-blog-single-creative.html"><img
-                                        src="https://craftohtml.themezaa.com/images/demo-fashion-store-blog-06.jpg"
-                                        alt="" /></a>
-                            </div>
-                            <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                <span class="mb-5px d-block">By <a href="#"
-                                        class="text-dark-gray fw-500 categories-text">Walton smith</a><a href="#"
-                                        class="blog-date">10 December 2023</a></span>
-                                <a href="demo-fashion-store-blog-single-creative.html"
-                                    class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">In
-                                    order to be irreplaceable one must always be different.</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item">
-                        <div class="card bg-transparent border-0 h-100">
-                            <div class="blog-image position-relative overflow-hidden">
-                                <a href="demo-fashion-store-blog-single-creative.html"><img
-                                        src="https://craftohtml.themezaa.com/images/demo-fashion-store-blog-07.jpg"
-                                        alt="" /></a>
-                            </div>
-                            <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                <span class="mb-5px d-block">By <a href="#"
-                                        class="text-dark-gray fw-500 categories-text">Walton smith</a><a href="#"
-                                        class="blog-date">10 December 2023</a></span>
-                                <a href="demo-fashion-store-blog-single-creative.html"
-                                    class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Gucci
-                                    has represented design and contemporary lifestyle.</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                </ul>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>

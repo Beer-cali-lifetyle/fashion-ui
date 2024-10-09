@@ -1,46 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ScriptLoadComponent } from "../script-load/script-load.component";
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ApiService } from '../../shared/services/api.service';
 import { CommonModule } from '@angular/common';
 import { UiToasterService } from '../../core/services/toaster.service';
+import { ScriptLoaderService } from '../../core/services/script-loader.service';
+import { environment } from '../../../environments/environment';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppBase } from '../../../app-base.component';
 
 @Component({
   selector: 'app-shop-list',
   templateUrl: './shop-list.component.html',
   styleUrls: ['./shop-list.component.css'],
   standalone: true,
-  imports: [ScriptLoadComponent, RouterModule, CommonModule]
+  imports: [ScriptLoadComponent, RouterModule, CommonModule, NgbPaginationModule]
 })
-export class ShopListComponent implements OnInit {
+export class ShopListComponent extends AppBase implements OnInit, AfterViewInit {
   products: any = [];
   categoryId: string | null = null;
   subcategoryId: string | null = null;
+  categories: any[] = [];
+  imgBaseUrl: string = `${environment.api.base_url}/`;
   constructor(
     private ApiService: ApiService,
     private toaster: UiToasterService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private scriptService: ScriptLoaderService,
+    private cdr: ChangeDetectorRef
+  ) { super() }
 
   async ngOnInit() {
+    await this.fetchCategories();
     this.route.queryParams.subscribe(async params => {
       this.categoryId = params['categoryId'] || null;
       this.subcategoryId = params['subcategoryId'] || null;
 
       if (this.categoryId) {
         console.log('Category ID:', this.categoryId);
-       await this.fetchproductsWithFilter({categoryId: this.categoryId})
+        await this.fetchproductsWithFilter({ categoryId: this.categoryId, perPage: this.pageSize, page: this.currentPage })
       }
 
       if (this.subcategoryId) {
         console.log('Subcategory ID:', this.subcategoryId);
-        await this.fetchproductsWithFilter({subcategoryId: this.subcategoryId})
+        await this.fetchproductsWithFilter({ subcategoryId: this.subcategoryId, perPage: this.pageSize, page: this.currentPage })
       }
     });
-    if(!(this.categoryId || this.subcategoryId)) {
-    await this.ApiService.fetcHlatestProducts().then((res) => {
-      this.products = res?.data
-    })}
+    if (!(this.categoryId || this.subcategoryId)) {
+      await this.ApiService.fetcHlatestProducts({ perPage: this.pageSize, page: this.currentPage }).then((res) => {
+        this.products = res
+      })
+    }
+  }
+
+  async ngAfterViewInit() {
+    await this.scriptService.loadScripts();
+    await this.cdr.detectChanges();
+  }
+
+  async fetchCategories() {
+    await this.ApiService.getCategories().then((res) => {
+      this.categories = res;
+      this.cdr.detectChanges()
+    })
   }
 
   async addToCart(id: any) {
@@ -67,11 +89,11 @@ export class ShopListComponent implements OnInit {
   //   })
   // }
 
-async fetchproductsWithFilter(data: any) {
-  this.products = [];
-  await this.ApiService.fetchFilteredProduct(data).then((res)=> {
-    this.products = res;
-  })
-}
+  async fetchproductsWithFilter(data: any) {
+    this.products = [];
+    await this.ApiService.fetchFilteredProduct(data).then((res) => {
+      this.products = res;
+    })
+  }
 
 }

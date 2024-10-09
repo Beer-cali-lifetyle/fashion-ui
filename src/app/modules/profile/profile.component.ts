@@ -7,13 +7,14 @@ import { PaymentDetailsComponent } from './paymentDetails/paymentDetails.compone
 import { AddressComponent } from './address/address.component';
 import { ApiService } from '../../shared/services/api.service';
 import { UiToasterService } from '../../core/services/toaster.service';
+import { OrdersComponent } from '../orders/orders.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [ScriptLoadComponent, ReactiveFormsModule, CommonModule, PaymentDetailsComponent, AddressComponent]
+  imports: [ScriptLoadComponent, ReactiveFormsModule, CommonModule, PaymentDetailsComponent, AddressComponent, OrdersComponent]
 })
 export class ProfileComponent extends AppBase implements OnInit {
   address: any;
