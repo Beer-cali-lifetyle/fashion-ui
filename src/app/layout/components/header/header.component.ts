@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   async ngOnInit() {
     await this.fetchCategories()
     await this.fetchCart();
-    this.contextService.cart().subscribe((cartData: any) => {
+    this.contextService.cart()?.subscribe((cartData: any) => {
       if (cartData && cartData.data) {
         this.calculateSubTotal(cartData.data);
       }
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
   async fetchCategories() {
     await this.ApiService.getCategories().then((res) => {
-      this.categories = res;
+      this.categories = res?.categories;
     })
   }
 

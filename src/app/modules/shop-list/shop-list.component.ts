@@ -21,7 +21,7 @@ export class ShopListComponent extends AppBase implements OnInit, AfterViewInit 
   categoryId: string | null = null;
   subcategoryId: string | null = null;
   categories: any[] = [];
-  imgBaseUrl: string = `${environment.api.base_url}/`;
+  imgBaseUrl: string = environment.api.base_url;
   constructor(
     private ApiService: ApiService,
     private toaster: UiToasterService,
@@ -60,7 +60,7 @@ export class ShopListComponent extends AppBase implements OnInit, AfterViewInit 
 
   async fetchCategories() {
     await this.ApiService.getCategories().then((res) => {
-      this.categories = res;
+      this.categories = res?.categories;
       this.cdr.detectChanges()
     })
   }
@@ -90,10 +90,27 @@ export class ShopListComponent extends AppBase implements OnInit, AfterViewInit 
   // }
 
   async fetchproductsWithFilter(data: any) {
-    this.products = [];
     await this.ApiService.fetchFilteredProduct(data).then((res) => {
       this.products = res;
     })
+  }
+
+  async onPageChange(pagenumber: any) {
+    this.currentPage = pagenumber;
+    if (!(this.categoryId || this.subcategoryId)) {
+      await this.ApiService.fetcHlatestProducts({ perPage: this.pageSize, page: this.currentPage }).then((res) => {
+        this.products = res
+      })
+    } else {
+      if (this.subcategoryId) {
+        console.log('Subcategory ID:', this.subcategoryId);
+        await this.fetchproductsWithFilter({ subcategoryId: this.subcategoryId, perPage: this.pageSize, page: this.currentPage })
+      }
+      if (this.categoryId) {
+        console.log('Category ID:', this.categoryId);
+        await this.fetchproductsWithFilter({ categoryId: this.categoryId, perPage: this.pageSize, page: this.currentPage })
+      }
+    }
   }
 
 }

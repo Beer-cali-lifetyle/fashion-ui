@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UiToasterService } from '../../core/services/toaster.service';
 import { ContextService } from '../../core/services/context.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-info',
@@ -21,7 +22,10 @@ export class ProductInfoComponent extends AppBase implements OnInit {
   cartInfo: any;
   quantity: number = 1;
   wishlist: any;
-  constructor(private ApiServie: ApiService,
+  imgBaseUrl: string = environment.api.base_url;
+  mainProductImage: string = '';
+  relatedProducts: any = [];
+  constructor(private ApiService: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toaster: UiToasterService,
@@ -32,10 +36,12 @@ export class ProductInfoComponent extends AppBase implements OnInit {
   }
 
   async ngOnInit() {
-    await this.ApiServie.fetchProduct(this.id).then(async (res) => {
-      this.productInfo = res?.product
+    await this.ApiService.fetchProduct(this.id).then(async (res) => {
+      this.productInfo = res
+      this.mainProductImage = res?.product?.product_image
       await this.getCart();
       await this.fetchWishlist();
+      await this.fetchRelatedProducts();
     })
   }
 
@@ -55,73 +61,82 @@ export class ProductInfoComponent extends AppBase implements OnInit {
     }
   }
 
-  async addToCart() {
+  async addToCart(id: any) {
     if (this.contextService.user()) {
-    if (this.productInfo?.id && this.quantity > 0) {
       const payload = {
-        productId: this.productInfo?.id,
+        productId: id,
         quantity: this.quantity
       }
-      await this.ApiServie.addToCart(payload).then(async res => {
+      await this.ApiService.addToCart(payload).then(async res => {
         await this.getCart();
         await this.toaster.Success('Added to cart successfully')
       })
-    }
-  } else {
+    } else {
       this.router.navigate(['/auth/sign-in'])
     }
   }
 
+  selectImageToShow(e: any) {
+    this.mainProductImage = e;
+  }
 
   async getCart() {
     if (this.contextService.user()) {
-    await this.ApiServie.getCartProducts().then((res) => {
-      this.contextService.cart.set(res)
-      res?.data?.map((item: any) => {
-        if (item?.product?.id === this.productInfo?.id) {
-          this.cartInfo = item
-          this.quantity = item?.quantity;
-        }
+      await this.ApiService.getCartProducts().then((res) => {
+        this.contextService.cart.set(res)
+        res?.data?.map((item: any) => {
+          if (item?.product?.id === this.productInfo?.id) {
+            this.cartInfo = item
+            this.quantity = item?.quantity;
+          }
+        })
       })
-    })
-  }
+    }
   }
 
   async updateQuantity() {
     const payload = {
       quantity: this.quantity
     }
-    await this.ApiServie.updateQuantity(payload, this.cartInfo?.id).then(async res => {
-     await this.getCart()
+    await this.ApiService.updateQuantity(payload, this.cartInfo?.id).then(async res => {
+      await this.getCart()
     })
   }
 
-  async addToWishlist() {
+  async addToWishlist(id: any) {
     if (this.contextService.user()) {
-    const payload = {
-      productId: this.productInfo?.id
-    }
-    await this.ApiServie.addToWishlist(payload).then(async (res) => {
-      await this.fetchWishlist();
-    }) } else {
+      const payload = {
+        productId: id
+      }
+      await this.ApiService.addToWishlist(payload).then(async (res) => {
+        await this.fetchWishlist();
+      })
+    } else {
       this.router.navigate(['/auth/sign-in'])
-    } 
+    }
   }
 
   async fetchWishlist() {
     if (this.contextService.user()) {
-    this.wishlist = null;
-    await this.ApiServie.fetchWishlist().then(res => {
-      res?.data?.map((item: any) => {
-        if (item?.product?.id === this.productInfo?.id) {
-          this.wishlist = item;
-        }
+      this.wishlist = null;
+      await this.ApiService.fetchWishlist().then(res => {
+        res?.data?.map((item: any) => {
+          if (item?.product?.id === this.productInfo?.id) {
+            this.wishlist = item;
+          }
+        })
       })
-    })}
+    }
+  }
+
+  async fetchRelatedProducts() {
+    await this.ApiService.fetchFilteredProduct({ subcategoryId: this.productInfo?.product?.subcat_id, perPage: 10, page: 1 }).then((res) => {
+      this.relatedProducts = res?.data;
+    })
   }
 
   async removeFromWishlist() {
-    await this.ApiServie.removeFromWishlist(this.wishlist?.id).then(async res => {
+    await this.ApiService.removeFromWishlist(this.wishlist?.id).then(async res => {
       await this.fetchWishlist();
     })
   }

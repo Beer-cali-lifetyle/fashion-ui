@@ -34,11 +34,12 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/vendors.min.css",
+              "src/assets/sass/style.scss",
+              "src/assets/sass/responsive.scss",
+              "src/assets/sass/_variables.scss",
+              "src/assets/sass/_theme-vars.scss",
               "src/assets/css/icon.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/responsive.css",
-              "src/assets/demos/fashion-store/fashion-store.css"
+              "src/assets/sass/fashion-store.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"

@@ -20,19 +20,34 @@ export class ScriptLoaderService {
     loadScriptFunc(src: string): Promise<void> {
         return new Promise(async (resolve, reject) => {
             const existingScript = await document.querySelector(`script[src="${src}"]`);
-            sessionStorage.clear();
-            this.clearAllCookies();
             // If script already exists, remove it
             if (!existingScript) {
                 const script = await document.createElement('script');
                 script.src = await src;
                 script.onload = () => resolve();
                 script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-
                 await document.body.appendChild(script);
             }
         });
     }
+
+
+    removeAllScripts(): Promise<void> {
+        return new Promise((resolve, reject) => {
+          try {
+            const allScripts = document.querySelectorAll('script');
+            sessionStorage.clear();
+            this.clearAllCookies();
+            allScripts.forEach((script) => {
+              script.remove();
+            });
+            resolve(); 
+          } catch (error) {
+            reject(new Error('Failed to remove all scripts: ' + error));
+          }
+        });
+      }
+      
 
     clearAllCookies(): void {
         const cookies = document.cookie.split(';');
@@ -44,4 +59,5 @@ export class ScriptLoaderService {
             document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
         }
     }
+
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ScriptLoaderService } from '../../core/services/script-loader.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ScriptLoaderService } from '../../core/services/script-loader.service';
   styleUrls: ['./script-load.component.css'],
   standalone: true
 })
-export class ScriptLoadComponent implements AfterViewInit  {
+export class ScriptLoadComponent implements AfterViewInit, OnDestroy                             {
   constructor(
     private scriptService: ScriptLoaderService
   ) { }
@@ -16,13 +16,8 @@ export class ScriptLoadComponent implements AfterViewInit  {
     await this.scriptService.loadScripts()
   }
 
-  // private loadScript(src: string): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     const script = this.renderer.createElement('script');
-  //     script.src = src;
-  //     script.onload = resolve;
-  //     script.onerror = reject;
-  //     this.renderer.appendChild(document.body, script);
-  //   });
-  // }
+  async ngOnDestroy() {
+    await this.scriptService.removeAllScripts();
+  }
+
 }

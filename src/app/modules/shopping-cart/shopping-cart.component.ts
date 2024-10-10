@@ -28,7 +28,7 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.contextService.cart().subscribe((cartData: any) => {
+    this.contextService.cart()?.subscribe((cartData: any) => {
       if (cartData && cartData.data) {
         this.calculateSubTotal(cartData.data);
       }

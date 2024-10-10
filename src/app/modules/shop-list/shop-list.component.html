@@ -1,4 +1,4 @@
-<app-script-load></app-script-load>
+
 <section class="top-space-margin half-section bg-gradient-very-light-gray">
     <div class="container">
         <div class="row align-items-center justify-content-center"
@@ -21,61 +21,50 @@
     <div class="container-fluid">
         <div class="row flex-row-reverse">
             <div class="col-xxl-10 col-lg-9 ps-5 md-ps-15px md-mb-60px">
-                <ul class="shop-modern shop-wrapper  grid grid-4col xl-grid-3col sm-grid-2col xs-grid-1col gutter-extra-large text-center"
-                    data-anime='{ "el": "childs", "translateY": [-15, 0], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'>
-                    <li class="grid-sizer"></li>
-                    <!-- start shop item -->
-                    <li class="grid-item" *ngFor="let product of products?.data; let i=index">
-                        <div class="shop-box mb-10px">
-                            <div class="shop-image mb-20px">
-                                <a [routerLink]="['/shop/product', product?.id]">
-                                    <img [src]="imgBaseUrl + product?.product_image" alt="">
-                                    <!-- <span class="lable new">New</span> -->
-                                    <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                </a>
-                                <div class="shop-buttons-wrap">
-                                    <a (click)="addToCart(product?.id)"
-                                        class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                        <i class="feather icon-feather-shopping-bag"></i><span
-                                            class="quick-view-text button-text">Add to cart</span>
+                <div class="swiper-container product-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let product of products?.data; let i=index">
+                            <div class="shop-box mb-10px">
+                                <div class="shop-image mb-20px position-relative">
+                                    <a [routerLink]="['/shop/product', product?.id]">
+                                        <img [src]="imgBaseUrl + product.product_image" alt="Product image"
+                                            class="img-fluid uniform-img">
+                                        <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
                                     </a>
+                                    <div class="shop-hover top-right">
+                                        <a (click)="addToWishlist(product?.id, i)"
+                                            class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle"
+                                            data-bs-toggle="tooltip" title="Add to wishlist">
+                                            <i class="feather icon-feather-heart fs-16"></i>
+                                        </a>
+                                    </div>
+                                    <div class="shop-buttons-wrap animated fadeIn">
+                                        <a (click)="addToCart(product?.id)"
+                                            class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
+                                            <i class="feather icon-feather-shopping-bag"></i>
+                                            <span class="quick-view-text button-text">Add to cart</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="shop-hover d-flex justify-content-center">
-                                    <ul>
-                                        <li>
-                                            <a (click)="addToWishlist(product?.id, i)" *ngIf="!product?.is_whishlisted"
-                                                class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px"
-                                                data-bs-toggle="tooltip" data-bs-placement="left"
-                                                title="Add to wishlist"><i
-                                                    class="feather icon-feather-heart fs-16"></i></a>
-                                        </li>
-                                        <li>
-                                            <a (click)="addToWishlist(product?.id, i)" *ngIf="product?.is_whishlisted"
-                                                class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px"
-                                                data-bs-toggle="tooltip" data-bs-placement="left"
-                                                title="Add to wishlist"><i
-                                                    class="feather icon-feather-heart fs-16 heart-filled"></i></a>
-                                        </li>
-                                        <!-- <li>
-                                          <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                      </li> -->
-                                    </ul>
+                                <div class="shop-footer text-center">
+                                    <a href="demo-fashion-store-single-product.html"
+                                        class="alt-font text-dark-gray fs-19 fw-500">{{product.name}}</a>
+                                    <div class="price lh-22 fs-16"><del>$200.00</del> ${{product.price}}</div>
                                 </div>
-                            </div>
-                            <div class="shop-footer text-center">
-                                <a href="demo-fashion-store-single-product.html"
-                                    class="alt-font text-dark-gray fs-19 fw-500">{{product?.name}}</a>
-                                <div class="price lh-22 fs-16"><del>$200.00</del>${{product?.price}}</div>
                             </div>
                         </div>
-                    </li>
-                    <!-- end shop item -->
-
-                </ul>
+                    </div>
+                </div>
                 <div class="w-100 d-flex mt-4 justify-content-center md-mt-30px">
-                    <ngb-pagination [(page)]="currentPage" [collectionSize]="products?.total" [pageSize]="pageSize"
-                        [maxSize]="5" [boundaryLinks]="true" [ellipses]="true"
-                        class="pagination pagination-style-01 fs-13 fw-500 mb-0">
+                    <ngb-pagination 
+                        [page]="currentPage" 
+                        [collectionSize]="products?.total" 
+                        [pageSize]="pageSize"
+                        [maxSize]="5" 
+                        [boundaryLinks]="true" 
+                        [ellipses]="true" 
+                        (pageChange)="onPageChange($event)"
+                        class="pagination-style-01 fs-13 fw-500 mb-0">
                     </ngb-pagination>
                 </div>
 
@@ -88,7 +77,7 @@
                         <li *ngFor="let item of categories" class="ps-0"><a class="d-flex"><span class="pe-2"> <input type="radio"
                                         name="category" 
                                         [value]="item?.id" [id]="item?.id"></span><label [for]="item?.id">{{item?.catname}}</label></a><span
-                                class="item-qty">22</span></li>
+                                class="item-qty">{{item?.products_count}}</span></li>
                     </ul>
                 </div>
                 <!-- <div class="mb-30px">

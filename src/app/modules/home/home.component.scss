@@ -39,7 +39,8 @@
 .uniform-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures images fill the area while maintaining aspect ratio */
+  object-fit: cover;
+  max-height: 15em; /* Ensures images fill the area while maintaining aspect ratio */
 }
 
 .shop-overlay {

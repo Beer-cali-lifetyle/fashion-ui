@@ -1725,140 +1725,123 @@ input:focus, select:focus, textarea:focus, .form-control:focus {
 }     
 .magic-cursor-wrapper {
     position: absolute;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
     width: 30px;
-    height: 30px; 
+    height: 30px;
     pointer-events: none;
-    z-index:10000;     
+    z-index: 10000;
     transition: opacity 0.2s ease-in-out 0.2s;
-    &.sliderhover {   
-        #ball-cursor {  
-            opacity:1 !important;    
-        }
-    } 
-    &.vertical {
-        #ball-cursor {
-            &:before, &:after {
-                content: "\e845"; 
-                left: 50%;
-                top: 10px;
-                line-height: normal;
-                @include prefix(transform, translateX(-50%), webkit);
-            }
-            &:after { 
-                content: "\e842";
-                right: auto; 
-                bottom: 10px;
-                top: auto;
-            } 
-        }
-    }
-}
-@media (hover: none) {
+  }
+  .magic-cursor-wrapper.sliderhover #ball-cursor {
+    opacity: 1 !important;
+  }
+  .magic-cursor-wrapper.vertical #ball-cursor:before, .magic-cursor-wrapper.vertical #ball-cursor:after {
+    content: "\e845";
+    left: 50%;
+    top: 10px;
+    line-height: normal;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  .magic-cursor-wrapper.vertical #ball-cursor:after {
+    content: "\e842";
+    right: auto;
+    bottom: 10px;
+    top: auto;
+  }
+  @media (hover: none) {
     .magic-cursor-wrapper {
-        display: none;
+      display: none;
     }
-}
-.magic-cursor-light {
-    #ball-cursor {
-        background-color: var(--white); 
-        &:before {
-            color: var(--dark-gray);
-        }
-        &:after {
-            color: var(--dark-gray);
-        }
-    }
-}
-.magic-cursor-base-color {
-    #ball-cursor {
-        background-color: var(--base-color); 
-        &:before {
-            color: var(--white);
-        }
-        &:after {
-            color: var(--white);
-        }
-    }
-}
-.magic-view-cursor {
-    #ball-cursor {
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        background-color: rgba(0,0,0,.2);
-        width: 180px;
-        height: 180px;
-        box-shadow: none;
-        &:after {
-            display: none;
-        }
-        &:before {
-            content: "Explore";
-            font-size: 16px;
-            color: var(--white) !important;
-            font-weight: 400; 
-            font-family: var(--alt-font) !important;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    }
-}
-.magic-drag-cursor {
-    #ball-cursor {
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        background-color: rgba(0,0,0,.2);
-        width: 140px;
-        height: 140px;
-        box-shadow: none;
-        &:after {
-            display: none;
-        }
-        &:before {
-            content: "< DRAG >";
-            font-size: 14px;
-            color: var(--white) !important;
-            font-weight: 600; 
-            font-family: var(--alt-font) !important;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            word-spacing: 4px;
-            width: inherit;
-        }
-    }
-    &.magic-cursor-light {
-        #ball-cursor {
-            background-color: rgba(255,255,255,.2);
-            &:before {
-                color: var(--dark-gray);
-            }
-            &:after {
-                color: var(--dark-gray);
-            }
-        }
-    }
-}
-.magic-round-cursor {
-    #ball-cursor {
-        -webkit-backdrop-filter: blur(6px);
-        backdrop-filter: blur(6px);
-        background-color: rgba(0,0,0,.2);
-        width: 220px;
-        height: 220px;
-        box-shadow: none;
-        &:before {
-            display: none;
-        }
-        &:after {
-            display: none;
-        }
-    }
-}
+  }
+  .magic-cursor-light #ball-cursor {
+    background-color: var(--white);
+  }
+  .magic-cursor-light #ball-cursor:before {
+    color: var(--dark-gray);
+  }
+  .magic-cursor-light #ball-cursor:after {
+    color: var(--dark-gray);
+  }
+  .magic-cursor-base-color #ball-cursor {
+    background-color: var(--base-color);
+  }
+  .magic-cursor-base-color #ball-cursor:before {
+    color: var(--white);
+  }
+  .magic-cursor-base-color #ball-cursor:after {
+    color: var(--white);
+  }
+  .magic-view-cursor #ball-cursor {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 180px;
+    height: 180px;
+    box-shadow: none;
+  }
+  .magic-view-cursor #ball-cursor:after {
+    display: none;
+  }
+  .magic-view-cursor #ball-cursor:before {
+    content: "Explore";
+    font-size: 16px;
+    color: var(--white) !important;
+    font-weight: 400;
+    font-family: var(--alt-font) !important;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .magic-drag-cursor #ball-cursor {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 140px;
+    height: 140px;
+    box-shadow: none;
+  }
+  .magic-drag-cursor #ball-cursor:after {
+    display: none;
+  }
+  .magic-drag-cursor #ball-cursor:before {
+    content: "< DRAG >";
+    font-size: 14px;
+    color: var(--white) !important;
+    font-weight: 600;
+    font-family: var(--alt-font) !important;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    word-spacing: 4px;
+    width: inherit;
+  }
+  .magic-drag-cursor.magic-cursor-light #ball-cursor {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .magic-drag-cursor.magic-cursor-light #ball-cursor:before {
+    color: var(--dark-gray);
+  }
+  .magic-drag-cursor.magic-cursor-light #ball-cursor:after {
+    color: var(--dark-gray);
+  }
+  .magic-round-cursor #ball-cursor {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 220px;
+    height: 220px;
+    box-shadow: none;
+  }
+  .magic-round-cursor #ball-cursor:before {
+    display: none;
+  }
+  .magic-round-cursor #ball-cursor:after {
+    display: none;
+  }
 
 /* Anime animation */
 [data-anime] {
