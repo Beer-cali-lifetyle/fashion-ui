@@ -1,3 +1,40 @@
-<p>
-  blog works!
-</p>
+<section class="top-space-margin half-section bg-gradient-very-light-gray">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <span class="fs-18 mb-30px d-inline-block sm-mb-20px">By <a href="#"
+            class="text-dark-gray text-decoration-line-bottom">{{blog?.author}}</a> on {{blog?.created_at | date}}</span>
+        <h1 class="alt-font fw-600 text-dark-gray ls-minus-2px mb-0">{{blog?.title}}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+<!-- start section -->
+<section class="py-0 ps-13 pe-13 lg-ps-4 lg-pe-4 sm-px-0">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12"><img [src]="imgBaseUrl + blog?.blogimage" class="w-100" alt=""></div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+<!-- start section -->
+<section>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row">
+          <div class="offset-lg-1 col-md-8 last-paragraph-no-margin text-center text-md-start">
+            <h3 class="alt-font fw-600 text-dark-gray">{{blog?.description}}</h3>
+            <p>{{blog?.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+
+<app-script-load></app-script-load>

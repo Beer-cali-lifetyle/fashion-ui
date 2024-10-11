@@ -16,26 +16,42 @@
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <!-- Load anime.js here, before your custom script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
   <script>
-    console.log('swiper loaded');
+    document.addEventListener("DOMContentLoaded", () => {
+      const animatedElements = document.querySelectorAll('[data-custom-anime]');
+      console.log('Found elements to animate:', animatedElements);
+
+      animatedElements.forEach((el) => {
+        const data = JSON.parse(el.getAttribute('data-custom-anime'));
+        console.log('Animation data for element:', el, data);
+
+        // Default values if properties are missing
+        const options = {
+          targets: el,
+          translateY: data.translateY || [0, 0],
+          opacity: data.opacity || [0, 1],
+          duration: data.duration || 600,
+          delay: data.delay || 100,
+          easing: data.easing || "easeOutQuad",
+          translateX: data.translateX || [0, 0],
+        };
+
+        if (data.el === "childs") {
+          options.targets = el.children;
+          options.delay = anime.stagger(data.staggervalue || 150);
+        }
+
+        console.log('Final animation options:', options);
+
+        // Trigger the animation using anime.js
+        anime(options);
+      });
+    });
   </script>
 
-  <script src="assets/js/jquery.js"></script>
-  <script>
-    console.log('jQuery loaded');
-  </script>
-
-  <script src="assets/js/vendors.js"></script>
-  <script>
-    console.log('vendors loaded');
-  </script>
-
-  <script src="assets/js/main.js"></script>
-  <script>
-    console.log('main loaded');
-  </script> -->
 </body>
-
 
 </html>

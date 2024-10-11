@@ -130,8 +130,12 @@ export class ApiService {
     return await this.httpRequest.POST('/contact', data)
   }
 
-  async fetchBlogs() {
-    return await this.httpRequest.GET(`/blogs`);
+  async fetchBlogs(data: any) {
+    return await this.httpRequest.GET(`/blogs`, data);
+  }
+
+  async fetchBlog(id: any) {
+    return await this.httpRequest.GET(`/blogs/${id}`);
   }
 
   async placeOrder(data: any) {

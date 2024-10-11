@@ -5,6 +5,7 @@ import { AppBase } from '../../../app-base.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UiToasterService } from '../../core/services/toaster.service';
+import anime from 'animejs/lib/anime.es.js';
 
 @Component({
   selector: 'app-contact',
@@ -24,6 +25,15 @@ export class ContactComponent extends AppBase implements OnInit {
   }
 
   async ngOnInit() {
+    anime({
+      targets: '.animated-element',  // Change this to your element selector
+      translateY: [0, 0],
+      opacity: [0, 1],
+      duration: 600,
+      delay: 100,
+      easing: 'easeOutQuad',
+      stagger: 150 // For staggered animations
+    });
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],

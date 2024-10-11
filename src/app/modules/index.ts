@@ -8,4 +8,5 @@ export * from './profile/profile.component';
 export * from './shopping-cart/shopping-cart.component';
 export * from './checkout/checkout.component';
 export * from './blog-section/blog-list/blog-list.component';
+export * from './blog-section/blog/blog.component';
 export * from './orders/orders.component';

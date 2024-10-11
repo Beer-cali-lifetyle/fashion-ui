@@ -38,6 +38,9 @@ const ModuleRoutes: Routes = [
         path: 'magazines', loadComponent: () => import('./index').then(c => c.BlogListComponent)
     },
     {
+        path: 'magazines/:id', loadComponent: () => import('./index').then(c => c.BlogComponent)
+    },
+    {
         path: 'orders', canActivate: [AuthGuard], loadComponent: () => import('./index').then(c => c.OrdersComponent)
     },
 ]

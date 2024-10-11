@@ -75,7 +75,7 @@ export class HomeComponent extends AppBase implements AfterViewInit {
   }
 
   async fetchBlogs() {
-    await this.ApiService.fetchBlogs().then(async (res) => {
+    await this.ApiService.fetchBlogs({ perPage: 8, page: 1 }).then(async (res) => {
       this.blogs = res;
     })
   }

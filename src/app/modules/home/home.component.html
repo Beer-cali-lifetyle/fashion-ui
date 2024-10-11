@@ -1,3 +1,4 @@
+
 <section class="p-0">
     <div class="swiper full-screen top-space-margin md-h-600px sm-h-500px magic-cursor magic-cursor-vertical swiper-number-pagination-progress swiper-number-pagination-progress-vertical"
         data-slider-options='{ "slidesPerView": 1, "direction": "horizontal", "loop": true, "parallax": true, "speed": 1000, "pagination": { "el": ".swiper-number", "clickable": true }, "autoplay": { "delay": 4000, "disableOnInteraction": false },  "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1199": { "direction": "vertical" }}, "effect": "slide" }'
@@ -10,17 +11,17 @@
                         <div class="row align-items-center h-100 justify-content-start">
                             <div
                                 class="col-md-10 position-relative text-white d-flex flex-column justify-content-center h-100">
-                                <div data-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutQuad", "duration": 500, "delay": 300 }'
+                                <div data-custom-anime='{ "opacity": [0, 1], "translateY": [50, 0], "easing": "easeOutQuad", "duration": 500, "delay": 300 }'
                                     class="alt-font text-dark-gray mb-25px fs-20 sm-mb-15px"><span
                                         class="text-highlight">Discount on selected collection!<span
                                             class="bg-base-color h-8px bottom-0px"></span></span></div>
                                 <div class="alt-font fs-120 xs-fs-95 lh-100 mb-40px text-dark-gray fw-600 transform-origin-right ls-minus-5px sm-mb-25px"
-                                    data-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
+                                    data-custom-anime='{ "el": "childs", "rotateX": [90, 0], "opacity": [0,1], "staggervalue": 150, "easing": "easeOutQuad" }'>
                                     <span class="d-block">{{category?.catname}}'s</span>
                                     <span class="d-block fw-300">collection</span>
                                 </div>
                                 <div
-                                    data-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
+                                    data-custom-anime='{ "opacity": [0, 1], "translateY": [100, 0], "easing": "easeOutQuad", "duration": 800, "delay": 400 }'>
                                     <a (click)="redirectToShopList('category', category.id)"
                                         class="btn btn-dark-gray btn-box-shadow btn-large">View collection</a>
                                 </div>
@@ -49,7 +50,7 @@
 <section class="half-section">
     <div class="container">
         <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2"
-            data-anime='{ "el": "childs", "translateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'>
+            data-custom-anime='{ "el": "childs", "translateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'>
             <!-- start features box item -->
             <div class="col icon-with-text-style-01 md-mb-35px">
                 <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
@@ -109,7 +110,7 @@
 <section class="pt-0 pb-0 ps-7 pe-7 lg-ps-3 lg-pe-3 xs-p-0">
     <div class="container-fluid">
         <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2"
-            data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
+            data-custom-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
             <div class="col categories-style-02 lg-mb-30px" *ngFor="let category of categories | slice:0:4">
                 <div class="categories-box">
                     <a (click)="redirectToShopList('category', category.id)">
@@ -191,7 +192,7 @@
 <!-- end section -->
 <!-- end section -->
 <section class="pt-0 appear anime-complete"
-    data-anime="{ &quot;translateX&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+    data-custom-anime="{ &quot;translateX&quot;: [0, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
     <div class="container-fluid ps-8 pe-8">
         <div class="row position-relative">
             <div class="col swiper text-cente feather-shadow swiper-initialized swiper-horizontal swiper-backface-hidden"
@@ -258,7 +259,7 @@
     <div class="container-fluid position-relative z-index-9">
         <div class="row align-items-center mb-6 mt-7 xs-mb-30px xs-mt-35px">
             <div class="col-xl-2 col-lg-3 md-mb-40px appear anime-complete"
-                data-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                data-custom-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                 <div class="feature-box feature-box-left-icon-middle mb-5px">
                     <div class="feature-box-icon me-5px">
                         <i class="bi bi-heart-fill text-red fs-13"></i>
@@ -271,7 +272,7 @@
             </div>
             <div class="col-xl-10 col-lg-9">
                 <div class="row row-cols-2 row-cols-md-6 row-cols-sm-3 justify-content-center align-items-center appear anime-child anime-complete"
-                    data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                    data-custom-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:100, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                     <div class="col categories-style-01 text-center sm-mb-30px mt-3"
                         *ngFor="let category of categories | slice:0:4">
                         <div class="categories-box pt-5">
@@ -291,7 +292,7 @@
         <div class="row g-0">
             <div class="col-12 filter-content">
                 <ul class="shop-wrapper shop-grid grid grid-2col xxl-grid-2col xl-grid-2col lg-grid-2col md-grid-1col sm-grid-1col xs-grid-1col gutter-large text-center appear anime-child anime-complete"
-                    data-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translate&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
+                    data-custom-anime="{ &quot;el&quot;: &quot;childs&quot;, &quot;translate&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }"
                     style="position: relative; height: 555.5px;">
                     <li class="grid-sizer"></li>
                     <span *ngFor="let category of categories | slice:0:3; let i = index">
@@ -453,7 +454,7 @@
 <section class="half-section border-bottom border-color-extra-medium-gray">
     <div class="container">
         <div class="row row-cols-2 row-cols-md-5 row-cols-sm-3 g-0 justify-content-center"
-            data-anime='{ "el": "childs", "translateY": [-15, 0], "scale": [0.8, 1], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 100, "easing": "easeOutQuad" }'>
+            data-custom-anime='{ "el": "childs", "translateY": [-15, 0], "scale": [0.8, 1], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 100, "easing": "easeOutQuad" }'>
             <!-- start client item -->
             <div class="col text-center sm-mb-30px">
                 <a href="#"><img src="images/logo-asos.svg" class="h-30px" alt="" /></a>
@@ -492,7 +493,7 @@
         <div class="row g-0">
             <div class="col-md-8 cover-background appear anime-complete"
                 [ngStyle]="{ 'background-image': 'url(' + imgBaseUrl + categories[randomNumber]?.image_file + ')' }"
-                data-anime="{ &quot;translateX&quot;: [-50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                data-custom-anime="{ &quot;translateX&quot;: [-50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                 <div class="pt-13 pb-13 pe-5 w-40 xl-w-45 lg-w-55 md-w-65 sm-w-50 xs-w-270px float-end">
                     <span
                         class="fs-15 fw-700 text-dark-gray text-uppercase mb-20px xs-mb-15px d-inline-block text-decoration-line-bottom-medium">Save
@@ -510,7 +511,7 @@
                 </div>
             </div>
             <div class="col-md-4 appear anime-complete"
-                data-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
+                data-custom-anime="{ &quot;translateX&quot;: [50, 0], &quot;opacity&quot;: [0,1], &quot;duration&quot;: 600, &quot;delay&quot;:150, &quot;staggervalue&quot;: 150, &quot;easing&quot;: &quot;easeOutQuad&quot; }">
                 <div class="swiper position-relative h-100 swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden"
                     data-slider-options="{ &quot;slidesPerView&quot;: 1, &quot;loop&quot;: true, &quot;allowTouchMove&quot;: true, &quot;autoplay&quot;: { &quot;delay&quot;: 3000, &quot;disableOnInteraction&quot;: false }, &quot;navigation&quot;: { &quot;nextEl&quot;: &quot;.slider-one-slide-next-1&quot;, &quot;prevEl&quot;: &quot;.slider-one-slide-prev-1&quot; }, &quot;effect&quot;: &quot;fade&quot; }">
                     <div class="swiper-wrapper" id="swiper-wrapper-a1ad5a5103745ef71" aria-live="off"
@@ -642,9 +643,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2"
-                    data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
+                    data-custom-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
                     <!-- start blog item -->
-                    <div class="col categories-style-02 lg-mb-30px shadow-lg pt-2 me-2 blog-overflow"
+                    <div class="col categories-style-02 lg-mb-30px shadow-lg pt-2 me-2 blog-overflow" [routerLink]="['/magazines', blog?.id]"
                         *ngFor="let blog of blogs">
                         <div class="card bg-transparent border-0 h-100">
                             <div class="blog-image position-relative overflow-hidden">
@@ -655,7 +656,7 @@
                                     By <a href="#" class="text-dark-gray fw-500 categories-text">{{blog?.author}}</a>
                                     <a href="#" class="blog-date float-end">{{blog?.updated_at | date}}</a>
                                 </span>
-                                <a href="demo-fashion-store-blog-single-creative.html"
+                                <a [routerLink]="['/magazines', blog?.id]"
                                     class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">
                                     {{blog?.title}}.
                                 </a>
