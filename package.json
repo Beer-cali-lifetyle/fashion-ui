@@ -1,5 +1,5 @@
 {
-  "name": "my-angular-pwa",
+  "name": "bear-cali",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-angular-pwa": "node dist/my-angular-pwa/server/server.mjs"
+    "serve:ssr:bear-cali": "node dist/bear-cali/server/server.mjs"
   },
   "private": true,
   "dependencies": {

@@ -18,6 +18,10 @@ export class ApiService {
     return await this.httpRequest.POST(`/login`, data);
   }
 
+  async SignUp(data: any) {
+    return await this.httpRequest.POST(`/register`, data);
+  }
+
   async getUserDetails(id: string) {
     return await this.httpRequest.GET(`/user/${id}`);
   }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-angular-pwa": {
+    "bear-cali": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-angular-pwa",
+            "outputPath": "dist/bear-cali",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,7 +68,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": false
             }
           },
           "defaultConfiguration": "production"
@@ -76,7 +76,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/my-angular-pwa/server",
+            "outputPath": "dist/bear-cali/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
           }
@@ -85,10 +85,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-angular-pwa:build:production"
+              "buildTarget": "bear-cali:build:production"
             },
             "development": {
-              "buildTarget": "my-angular-pwa:build:development"
+              "buildTarget": "bear-cali:build:development"
             }
           },
           "defaultConfiguration": "development"

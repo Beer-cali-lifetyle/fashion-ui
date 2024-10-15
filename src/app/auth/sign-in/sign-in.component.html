@@ -1,4 +1,3 @@
-
 <section class="pt-0 d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="container card shadow-lg rounded">
     <div class="row g-0 justify-content-center card-body">
@@ -28,17 +27,21 @@
           </div>
 
           <div class="position-relative terms-condition-box text-start d-flex align-items-center mb-20px">
-            <a href="#" class="fs-14 text-dark-gray fw-500 text-decoration-line-bottom ms-auto">Forgot your
+            <a class="fs-14 text-dark-gray fw-500 text-decoration-line-bottom ms-auto">Forgot your
               password?</a>
           </div>
 
           <input type="hidden" name="redirect" value="" />
 
-          <button class="btn btn-medium btn-round-edge btn-dark-gray btn-box-shadow submit w-100" type="button" (click)="onSubmit()"
-            [disabled]="form.invalid">
+          <button class="btn btn-medium btn-round-edge btn-dark-gray btn-box-shadow submit w-100" type="button"
+            (click)="onSubmit()" [disabled]="form.invalid">
             Login
           </button>
-
+          <div class="position-relative terms-condition-box text-start d-flex align-items-center mb-20px">
+            <a routerLink="/auth/sign-up" class="fs-14 text-dark-gray fw-500 text-decoration-line-bottom ms-auto">Click
+              here to create new account | Register
+            </a>
+          </div>
           <div class="form-results mt-20px d-none"></div>
         </form>
 
@@ -47,43 +50,4 @@
   </div>
 </section>
 
-
-
-<!-- 
-<div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
-  <div class="inner">
-    <form action="">
-      <h3>Registration Form</h3>
-      <div class="form-group">
-        <div class="form-wrapper">
-          <label for="">First Name</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-wrapper">
-          <label for="">Last Name</label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
-      <div class="form-wrapper">
-        <label for="">Email</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="form-wrapper">
-        <label for="">Password</label>
-        <input type="password" class="form-control">
-      </div>
-      <div class="form-wrapper">
-        <label for="">Confirm Password</label>
-        <input type="password" class="form-control">
-      </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> I caccept the Terms of Use & Privacy Policy.
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <button>Register Now</button>
-    </form>
-  </div>
-</div> -->
 <app-script-load></app-script-load>
