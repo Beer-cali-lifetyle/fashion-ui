@@ -3,9 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   PLATFORM_ID,
-  Inject
+  Inject,
+  OnInit,
+  ElementRef
 } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule, NgIf, isPlatformBrowser } from '@angular/common';
 import { ApiService } from '../../shared/services/api.service';
@@ -18,23 +20,23 @@ import { ScriptLoadComponent } from '../../modules/script-load/script-load.compo
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css'],
+  styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf,
-    RouterLink,
     CommonModule,
+    RouterLink,
+    FormsModule,
     SharedModule,
     RouterModule,
     ScriptLoadComponent
-]
+  ]
 })
-export class SignInComponent extends AppBase {
+export class SignInComponent extends AppBase implements OnInit {
   inputType = 'password';
   visible = false;
-
+  signUpForm!: FormGroup;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -42,13 +44,33 @@ export class SignInComponent extends AppBase {
     private cd: ChangeDetectorRef,
     private apiService: ApiService,
     private context: ContextService,
-    private commonService: CommonService
+    private el: ElementRef
   ) {
     super();
+
+  }
+
+  toggle() {
+    const container = document.getElementById('container');
+    container?.classList.toggle('sign-in');
+    container?.classList.toggle('sign-up');
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      const container = document.getElementById('container');
+      container?.classList.add('sign-in');
+    }, 0);
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+    this.signUpForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required]
+    }, { validator: this.mustMatch('password', 'password_confirmation') });
   }
 
   toggleVisibility() {
@@ -57,7 +79,7 @@ export class SignInComponent extends AppBase {
     this.cd.markForCheck();
   }
 
-  async onSubmit() {
+  async signIn() {
     if (this.form.valid) {
       try {
         const res = await this.apiService.SignIn(this.form.value);
@@ -73,6 +95,42 @@ export class SignInComponent extends AppBase {
       } catch (error) {
         console.error('Sign-in error:', error);
         // Handle error appropriately (e.g., show a notification or message to the user)
+      }
+    } else {
+      this.validateForm();
+    }
+  }
+
+  
+  mustMatch(password: string, password_confirmation: string) {
+    return (formGroup: FormGroup) => {
+      const passControl = formGroup.controls[password];
+      const confirmPassControl = formGroup.controls[password_confirmation];
+
+      if (confirmPassControl.errors && !confirmPassControl.errors['mustMatch']) {
+        return;
+      }
+
+      if (passControl.value !== confirmPassControl.value) {
+        confirmPassControl.setErrors({ mustMatch: true });
+      } else {
+        confirmPassControl.setErrors(null);
+      }
+    };
+  }
+
+
+  async onSignup() {
+    if (this.form.valid) {
+      try {
+        const res = await this.apiService.SignUp(this.form.value);
+        this.context.user.set(res?.user);
+          localStorage.setItem('access_token', res?.access_token);
+          localStorage.setItem('user_id', res?.user?.id);
+          localStorage.setItem('user', JSON.stringify(res?.user));
+        this.router.navigate(['/home'])
+      } catch (error) {
+        console.error('Sign-in error:', error);
       }
     } else {
       this.validateForm();

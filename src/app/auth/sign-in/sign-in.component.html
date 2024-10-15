@@ -1,4 +1,4 @@
-<section class="pt-0 d-flex justify-content-center align-items-center" style="height: 100vh;">
+<!-- <section class="pt-0 d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="container card shadow-lg rounded">
     <div class="row g-0 justify-content-center card-body">
       <div class="col-xl-4 col-lg-5 col-md-10 contact-form-style-04 md-mb-50px"
@@ -50,4 +50,97 @@
   </div>
 </section>
 
-<app-script-load></app-script-load>
+<app-script-load></app-script-load> -->
+
+
+
+<!-- <app-script-load></app-script-load>  -->
+
+<div id="container" class="container">
+  <div class="row w-full">
+    <div class="col align-items-center flex-col sign-up">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignup()" class="form-wrapper align-items-center">
+        <div class="form sign-up">
+          <div class="input-group">
+            <i class="feather icon-feather-user"></i>
+            <input type="text" placeholder="Name" formControlName="name">
+          </div>
+          <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-red">
+            <small *ngIf="form.get('name')?.errors?.['required']">Name is required.</small>
+          </div>
+          <div class="input-group">
+            <i class="feather icon-feather-email"></i>
+            <input type="email" placeholder="Email" formControlName="email">
+          </div>
+          <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-red">
+            <small *ngIf="form.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+          </div>
+          <div class="input-group">
+            <i class="feather icon-feather-lock"></i>
+            <input type="password" placeholder="Password" formControlName="password">
+          </div>
+          <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-red">
+            <small *ngIf="form.get('password')?.errors?.['required']">Password is required.</small>
+          </div>
+          <div class="input-group">
+            <i class="feather icon-feather-lock"></i>
+            <input type="password" placeholder="Confirm password" formControlName="password_confirmation">
+          </div>
+          <div *ngIf="form.get('password_confirmation')?.invalid && form.get('password_confirmation')?.touched"
+            class="text-red">
+            <small *ngIf="form.get('password_confirmation')?.errors?.['required']">Password confirmation is
+              required.</small>
+            <small *ngIf="form.get('password_confirmation')?.errors?.['mustMatch']">Passwords must match.</small>
+          </div>
+          <button type="submit">Sign up</button>
+          <p>
+            <span>Already have an account?</span>
+            <b (click)="toggle()" class="pointer">Sign in here</b>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="col align-items-center flex-col sign-in">
+      <form [formGroup]="form" (ngSubmit)="signIn()" class="form-wrapper align-items-center">
+        <div class="form sign-in">
+          <div class="input-group">
+            <i class="feather icon-feather-user"></i>
+            <input type="text" placeholder="Username" formControlName="email">
+          </div>
+          <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-red">
+            <small *ngIf="form.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+          </div>
+          <div class="input-group">
+            <i class="feather icon-feather-lock"></i>
+            <input type="password" placeholder="Password" formControlName='password'>
+          </div>
+          <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-red">
+            <small *ngIf="form.get('password')?.errors?.['required']">Password is required.</small>
+          </div>
+          <button type="submit">Sign in</button>
+          <p><b>Forgot password?</b></p>
+          <p>
+            <span>Don't have an account?</span>
+            <b (click)="toggle()" class="pointer">Sign up here</b>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row content-row">
+    <div class="col align-items-center flex-col">
+      <div class="text sign-in">
+        <h2>Welcome to <br> Bear Cali</h2>
+      </div>
+      <div class="img sign-in"></div>
+    </div>
+    <div class="col align-items-center flex-col">
+      <div class="img sign-up"></div>
+      <div class="text sign-up">
+        <h2>Join with us</h2>
+      </div>
+    </div>
+  </div>
+</div>
