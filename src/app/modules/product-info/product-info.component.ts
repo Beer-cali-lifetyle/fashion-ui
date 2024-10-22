@@ -61,9 +61,11 @@ export class ProductInfoComponent extends AppBase implements OnInit {
     }
   }
 
-  async addToCart(id: any) {
+  async addToCart(id: any, i?: number) {
     if (this.contextService.user()) {
-      const payload = {
+      if (i) {
+        this.relatedProducts[i]['addedTocart'] = true;
+      } const payload = {
         productId: id,
         quantity: this.quantity
       }
@@ -85,7 +87,8 @@ export class ProductInfoComponent extends AppBase implements OnInit {
       await this.ApiService.getCartProducts().then((res) => {
         this.contextService.cart.set(res)
         res?.data?.map((item: any) => {
-          if (item?.product?.id === this.productInfo?.id) {
+          
+          if (item?.product?.id === this.productInfo?.product?.id) {
             this.cartInfo = item
             this.quantity = item?.quantity;
           }

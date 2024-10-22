@@ -46,7 +46,8 @@ export class ContactComponent extends AppBase implements OnInit {
   async onSubmit() {
     if (this.form.valid) {
       await this.ApiService.contactUs(this.form.value).then(res => {
-        this.toaster.Success('Contact query sent successfully')
+        this.toaster.Success('Contact query sent successfully');
+        this.form.reset();
       })
     } else { this.validateForm(); }
   }

@@ -180,7 +180,7 @@ export class PaymentDetailsComponent extends AppBase implements OnInit {
 
   async onSubmit() {
     if (this.form.valid) {
-      debugger;
+      
       const value = {
         card_number: this.form.value.card_number,
         name_on_card: this.form.value.holder_name,

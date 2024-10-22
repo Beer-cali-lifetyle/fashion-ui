@@ -662,7 +662,7 @@
             <div class="col-12">
                 <div class="swiper-container product-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let product of relatedProducts">
+                        <div class="swiper-slide" *ngFor="let product of relatedProducts; let i= index;">
                             <div class="shop-box mb-10px">
                                 <div class="shop-image mb-20px position-relative">
                                     <a [routerLink]="['/shop/product', product?.id]">
@@ -678,10 +678,15 @@
                                         </a>
                                     </div>
                                     <div class="shop-buttons-wrap animated fadeIn">
-                                        <a (click)="addToCart(product?.id)"
+                                        <a (click)="addToCart(product?.id, i)" *ngIf="!product?.addedTocart"
                                             class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
                                             <i class="feather icon-feather-shopping-bag"></i>
                                             <span class="quick-view-text button-text">Add to cart</span>
+                                        </a>
+                                        <a *ngIf="product?.addedTocart" routerLink="/shopping-cart"
+                                            class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
+                                            <span><i class="feather icon-feather-check"></i></span>
+                                            <span class="btn-double-text ls-0px" data-text="Go to cart">Added to cart</span>
                                         </a>
                                     </div>
                                 </div>

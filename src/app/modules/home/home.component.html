@@ -149,7 +149,7 @@
             <div class="col-12 product-section">
                 <div class="swiper-container product-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let product of products">
+                        <div class="swiper-slide" *ngFor="let product of products; let i=index;">
                             <div class="shop-box mb-10px">
                                 <div class="shop-image mb-20px position-relative">
                                     <a [routerLink]="['/shop/product', product?.id]">
@@ -158,17 +158,24 @@
                                         <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
                                     </a>
                                     <div class="shop-hover top-right">
-                                        <a (click)="addToWishlist(product?.id)"
+                                        <a (click)="addToWishlist(product?.id, i)"
                                             class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle"
                                             data-bs-toggle="tooltip" title="Add to wishlist">
-                                            <i class="feather icon-feather-heart fs-16"></i>
+                                            <i class="feather icon-feather-heart fs-16" *ngIf="!product?.wishlisted"></i>      <i class="feather icon-feather-heart heart-filled fs-16 text-red" *ngIf="product?.wishlisted"></i>
                                         </a>
                                     </div>
-                                    <div class="shop-buttons-wrap animated fadeIn">
-                                        <a (click)="addToCart(product?.id)"
+                                    <div class="shop-buttons-wrap animated fadeIn" *ngIf="!product?.addedTocart">
+                                        <a (click)="addToCart(product?.id, i)"
                                             class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
                                             <i class="feather icon-feather-shopping-bag"></i>
                                             <span class="quick-view-text button-text">Add to cart</span>
+                                        </a>
+                                    </div>
+                                    <div class="shop-buttons-wrap animated fadeIn">
+                                        <a *ngIf="product?.addedTocart" routerLink="/shopping-cart"
+                                            class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
+                                            <span><i class="feather icon-feather-check"></i></span>
+                                            <span class="btn-double-text ls-0px" data-text="Go to cart">Added to cart</span>
                                         </a>
                                     </div>
                                 </div>

@@ -119,11 +119,11 @@ export class ApiService {
   }
 
   async fetchWishlist() {
-    return await this.httpRequest.GET(`/wishlist`);
+    return await this.httpRequest.GET(`/wishlist`, {}, true);
   }
 
   async addToWishlist(data: any) {
-    return await this.httpRequest.POST(`/wishlist`, data);
+    return await this.httpRequest.POST(`/wishlist`, data, { withFormData: false }, true);
   }
 
   async removeFromWishlist(id: any) {

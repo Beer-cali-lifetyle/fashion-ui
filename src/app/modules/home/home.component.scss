@@ -159,3 +159,11 @@
 .blog-overflow {
   overflow-x: auto;
 }
+
+.heart-filled {
+  background-color: red; /* Make background red */
+  border-radius: 50%; /* Make it rounded */
+  padding: 3px; /* Adjust padding to fit icon */
+  color: white; /* Change icon color */
+}
+

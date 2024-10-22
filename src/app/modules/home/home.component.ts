@@ -94,18 +94,18 @@ export class HomeComponent extends AppBase implements AfterViewInit {
     }
   }
 
-getRandomCategory() {
-  if (this.categories && this.categories.length > 0) {
-    const randomCategory = this.categories[this.getRandomNumber(this.categories.length)];
-    return randomCategory;
-} else {
-    console.log('No categories available');
-}
-}
+  getRandomCategory() {
+    if (this.categories && this.categories.length > 0) {
+      const randomCategory = this.categories[this.getRandomNumber(this.categories.length)];
+      return randomCategory;
+    } else {
+      console.log('No categories available');
+    }
+  }
 
-get hasCategories(): boolean {
-  return this.categories?.length > 0;
-}
+  get hasCategories(): boolean {
+    return this.categories?.length > 0;
+  }
 
   getRandomNumber(max: number): number {
     return Math.floor(Math.random() * max);
@@ -123,7 +123,8 @@ get hasCategories(): boolean {
     })
   }
 
-  async addToCart(id: any) {
+  async addToCart(id: any, i: number) {
+    this.products[i]['addedTocart'] = this.products[i]?.addedTocart ? !this.products[i]?.addedTocart : true;
     if (this.contextService.user()) {
       const payload = {
         productId: id,
@@ -141,16 +142,18 @@ get hasCategories(): boolean {
 
   async getCart() {
     if (this.contextService.user()) {
-    await this.ApiService.getCartProducts().then((res) => {
-      this.contextService.cart.set(res)
-    })
-  }}
+      await this.ApiService.getCartProducts().then((res) => {
+        this.contextService.cart.set(res)
+      })
+    }
+  }
 
-  async addToWishlist(id: any) {
+  async addToWishlist(id: any, i: number) {
     if (this.contextService.user()) {
       const payload = {
         productId: id
       }
+      this.products[i]['wishlisted'] = true;
       await this.ApiService.addToWishlist(payload).then(async (res) => {
         // await this.fetchWishlist();
       })
@@ -158,5 +161,21 @@ get hasCategories(): boolean {
       this.router.navigate(['/auth/sign-in'])
     }
   }
+
+
+  async removFromWishlist(id: any, i: number) {
+    if (this.contextService.user()) {
+      const payload = {
+        productId: id
+      }
+      this.products[i]['wishlisted'] = false;
+      await this.ApiService.removeFromWishlist(payload).then(async (res) => {
+        // await this.fetchWishlist();
+      })
+    } else {
+      this.router.navigate(['/auth/sign-in'])
+    }
+  }
+
 
 }

@@ -1,14 +1,14 @@
 .loader-container {
-    position: fixed; /* Ensure it stays in the same position relative to the viewport */
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
+    width: 100vw; 
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(180, 180, 180, 0.8); /* Add slight transparency */
-    z-index: 9999; /* High z-index to ensure it's on the top layer */
+    background-color: rgb(253, 253, 253); 
+    z-index: 9; 
 }
 
 .bouncing-dots {

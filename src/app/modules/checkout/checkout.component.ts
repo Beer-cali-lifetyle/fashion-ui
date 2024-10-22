@@ -124,7 +124,7 @@ export class CheckoutComponent extends AppBase implements OnInit {
         address: this.selectedBillingAddress,
         payment_method: this.selectedPaymentMethod
       }
-      debugger;
+      
       await this.ApiService.placeOrder(payload).then(async (res) => {
         if (res) {
           this.toaster.Success('Order Placed Succesfully')

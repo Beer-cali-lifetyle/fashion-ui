@@ -14,8 +14,9 @@ import { ScriptLoadComponent } from '../../modules/script-load/script-load.compo
     HeaderComponent,
     FooterComponent,
     RouterOutlet,
-    ScriptLoadComponent
-  ]
+    ScriptLoadComponent,
+    LoaderComponent
+]
 })
 export class BaseLayoutComponent implements OnInit {
 
